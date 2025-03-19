@@ -869,7 +869,7 @@ GameObject:
   - component: {fileID: 838866040}
   - component: {fileID: 838866039}
   m_Layer: 5
-  m_Name: Button (3)
+  m_Name: ExitBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -938,7 +938,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 838866040}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1284198157}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: onExitBtnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &838866040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -990,7 +1002,7 @@ GameObject:
   - component: {fileID: 949394622}
   - component: {fileID: 949394621}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: MultiplayerBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1059,7 +1071,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 949394622}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1284198157}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: onMultiplayerBtnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &949394622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1248,7 +1272,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u8BBE\u7F6E"
+  m_text: "\u9009\u9879"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9e1c161b55f2c6245a88b044c291e6b7, type: 2}
   m_sharedMaterial: {fileID: -841266798069066041, guid: 9e1c161b55f2c6245a88b044c291e6b7, type: 2}
@@ -1365,6 +1389,54 @@ MonoBehaviour:
   references:
     version: 2
     RefIds: []
+--- !u!1 &1284198155
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1284198156}
+  - component: {fileID: 1284198157}
+  m_Layer: 5
+  m_Name: MenuController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1284198156
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284198155}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1449291594}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1284198157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284198155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e83fb45bef63f5b44a4d415140ae4ba7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1287665317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1378,7 +1450,7 @@ GameObject:
   - component: {fileID: 1287665320}
   - component: {fileID: 1287665319}
   m_Layer: 5
-  m_Name: Button
+  m_Name: SingleplayerBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1447,7 +1519,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1287665320}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1284198157}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: onSingleplayerBtnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1287665320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1694,6 +1778,7 @@ RectTransform:
   - {fileID: 949394620}
   - {fileID: 1846505287}
   - {fileID: 838866038}
+  - {fileID: 1284198156}
   m_Father: {fileID: 766093061}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1806,7 +1891,7 @@ GameObject:
   - component: {fileID: 1846505289}
   - component: {fileID: 1846505288}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: OptionsBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1875,7 +1960,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1846505289}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1284198157}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: onOptionsBtnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1846505289
 MonoBehaviour:
   m_ObjectHideFlags: 0

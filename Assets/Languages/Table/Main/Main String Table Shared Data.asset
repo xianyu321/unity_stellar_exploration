@@ -14,7 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TableCollectionName: Main String Table
   m_TableCollectionNameGuidString: 51e1f56986f634746a3e26a3854a59ae
-  m_Entries: []
+  m_Entries:
+  - m_Id: 330884234207232
+    m_Key: Singleplayer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 332624933281792
+    m_Key: Multiplayer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 333375436873728
+    m_Key: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 333639401201664
+    m_Key: Exit
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

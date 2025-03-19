@@ -17,7 +17,23 @@ MonoBehaviour:
   m_SharedData: {fileID: 11400000, guid: 51e1f56986f634746a3e26a3854a59ae, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 330884234207232
+    m_Localized: Singleplayer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 332624933281792
+    m_Localized: Multiplayer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 333375436873728
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 333639401201664
+    m_Localized: Exit
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -1,0 +1,182 @@
+[
+    {
+        "name": "Grass Block",
+        "faces": {
+            "left": 0,
+            "right": 0,
+            "front": 0,
+            "back": 0,
+            "up": 1,
+            "down": 2
+        },
+        "icon": 0
+    },
+    {
+        "name": "Dirt",
+        "faces": {
+            "left": 2,
+            "right": 2,
+            "front": 2,
+            "back": 2,
+            "up": 2,
+            "down": 2
+        },
+        "icon": 1
+    },
+    {
+        "name": "Coarse Dirt",
+        "faces": {
+            "left": 3,
+            "right": 3,
+            "front": 3,
+            "back": 3,
+            "up": 3,
+            "down": 3
+        },
+        "icon": 2
+    },
+    {
+        "name": "Stone",
+        "faces": {
+            "left": 4,
+            "right": 4,
+            "front": 4,
+            "back": 4,
+            "up": 4,
+            "down": 4
+        },
+        "icon": 3
+    },
+    {
+        "name": "Stone Cutter",
+        "faces": {
+            "left": 5,
+            "right": 5,
+            "front": 5,
+            "back": 5,
+            "up": 5,
+            "down": 5
+        },
+        "icon": 4
+    },
+    {
+        "name": "Coal Ore",
+        "faces": {
+            "left": 6,
+            "right": 6,
+            "front": 6,
+            "back": 6,
+            "up": 6,
+            "down": 6
+        },
+        "icon": 5
+    },
+    {
+        "name": "Iron Ore",
+        "faces": {
+            "left": 7,
+            "right": 7,
+            "front": 7,
+            "back": 7,
+            "up": 7,
+            "down": 7
+        },
+        "icon": 6
+    },
+    {
+        "name": "Glod Ore",
+        "faces": {
+            "left": 8,
+            "right": 8,
+            "front": 8,
+            "back": 8,
+            "up": 8,
+            "down": 8
+        },
+        "icon": 7
+    },
+    {
+        "name": "Diamond Ore",
+        "faces": {
+            "left": 9,
+            "right": 9,
+            "front": 9,
+            "back": 9,
+            "up": 9,
+            "down": 9
+        },
+        "icon": 8
+    },
+    {
+        "name": "Oak Log",
+        "faces": {
+            "left": 10,
+            "right": 10,
+            "front": 10,
+            "back": 10,
+            "up": 11,
+            "down": 11
+        },
+        "icon": 9
+    },
+    {
+        "name": "Cherry Log",
+        "faces": {
+            "left": 12,
+            "right": 12,
+            "front": 12,
+            "back": 12,
+            "up": 13,
+            "down": 13
+        },
+        "icon": 10
+    },
+    {
+        "name": "Birch Log",
+        "faces": {
+            "left": 14,
+            "right": 14,
+            "front": 14,
+            "back": 14,
+            "up": 15,
+            "down": 15
+        },
+        "icon": 11
+    },
+    {
+        "name": "Oak Leaves",
+        "faces": {
+            "left": 16,
+            "right": 16,
+            "front": 16,
+            "back": 16,
+            "up": 16,
+            "down": 16
+        },
+        "icon": 12
+    },
+    {
+        "name": "Birch Leaves",
+        "faces": {
+            "left": 17,
+            "right": 17,
+            "front": 17,
+            "back": 17,
+            "up": 17,
+            "down": 17
+        },
+        "icon": 13
+    },
+    {
+        "name": "Cherry Leaves",
+        "faces": {
+            "left": 18,
+            "right": 18,
+            "front": 18,
+            "back": 18,
+            "up": 18,
+            "down": 18
+        },
+        "icon": 14
+    }
+]

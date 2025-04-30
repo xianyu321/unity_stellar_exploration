@@ -4,9 +4,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorldManager : MonoBehaviour
+public class WorldManager
 {
-    private Dictionary<string, WorldEntity> worlds = new();
+    private Dictionary<string, WorldEntity> worlds;
     private static WorldManager _instance;
     public static WorldManager Instance
     {
@@ -19,10 +19,9 @@ public class WorldManager : MonoBehaviour
             return _instance;
         }
     }
-
-    public void Awake()
-    {
-        GetOrCreateWorld(new());
+    WorldManager(){
+        worlds = new();
+        // GetOrCreateWorld(new());
     }
 
     public WorldEntity GetOrCreateWorld(WorldGenerator worldGenerator){

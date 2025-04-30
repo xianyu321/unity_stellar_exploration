@@ -100,6 +100,16 @@ public class ChunkEntity{
             blocks[blockCoord.x, blockCoord.y, blockCoord.z] = null;
         }
     }
+    public bool PlaceBlock(BlockCoord blockCoord, int blockId){
+        if(IsVoxelInChunk(blockCoord)){
+            if(GetBlock(blockCoord.x, blockCoord.y, blockCoord.z).IsEntity()){
+                return false;
+            }
+            blocks[blockCoord.x, blockCoord.y, blockCoord.z] = new(this, blockCoord, blockId);
+            UpdateChunk();
+        }
+        return false;
+    }
     
     //清空贴图数据
     void ClearMeshData()

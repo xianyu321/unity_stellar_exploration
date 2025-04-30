@@ -59,6 +59,17 @@ public class UIItemEntity : MonoBehaviour
         UpdateUI();
         return tempItem;
     }
+    public ItemData TakeOne(){
+        if(item.num == 1){
+            ItemData tempItem = item;
+            item = null;
+            UpdateUI();
+            return tempItem;
+        }
+        item.num -= 1;
+        UpdateUI();
+        return new(item.id, 1);
+    }
 
     void UpdateUI(){
         if(item is null){
@@ -75,6 +86,8 @@ public class UIItemEntity : MonoBehaviour
             numText.text = item.num.ToString();
         }   
     }
+
+
 }
 
 public class ItemData{
@@ -84,6 +97,11 @@ public class ItemData{
     public ItemData(int _id, int _num){
         id = _id;
         num = _num;
+    }
+
+    public ItemData(ItemData data){
+        id = data.id;
+        num = data.num;
     }
 }
 

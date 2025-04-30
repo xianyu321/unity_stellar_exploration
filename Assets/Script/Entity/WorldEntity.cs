@@ -63,4 +63,14 @@ public class WorldEntity{
             block.chunk.UpdateChunk();
         }
     }
+
+    public bool PlacedBlock(Vector3Int placedBlockPos, int blockId)
+    {
+        if(blockId < 1000){
+            ChunkEntity chunk = worldGenerator.GetChunkByBlockCoord(placedBlockPos);
+            BlockCoord blockCoord = BlockCoord.ToBlockCoord(placedBlockPos);
+            return chunk.PlaceBlock(blockCoord, blockId);
+        }
+        return false;
+    }
 }

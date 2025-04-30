@@ -7,13 +7,14 @@ using UnityEngine.UI;
 public class ToolBar : MonoBehaviour
 {
     public UIItemEntity[] uiItems;
-    public Player player;
+    public PlayerEntity player;
     public RectTransform highlight;
     public int itemSelect = 0;
     // World world;
-    public bool inUI;
     Transform[] item;
-
+    public void Initialize(PlayerEntity _player){
+        player = _player;
+    }
     private void Start()
     {
         InitNode();
@@ -22,6 +23,13 @@ public class ToolBar : MonoBehaviour
         for(int i = 0; i < uIItems.Length; ++i){
 
         }
+    }
+
+    public UIItemEntity GetNowItem(){
+        return uiItems[itemSelect];
+    }
+    public int GetNowItemID(){
+        return GetNowItem().GetItem().id;
     }
 
     void SetItem(UIItemEntity slot, int index){
@@ -51,14 +59,13 @@ public class ToolBar : MonoBehaviour
     public int GetItemIDNow(){
         return 0;
     }
-
-
+    float scroll;
     void Update()
     {
-        if(inUI){
+        if(player.inUI){
             return;
         }
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll != 0)
         {
             if (scroll > 0)
@@ -79,8 +86,6 @@ public class ToolBar : MonoBehaviour
                 itemSelect = maxSelect;
             }
             SetSelect(itemSelect);
-            // highlight.position = slots[itemSelect].slotIcon.transform.position;
-            // player.selectedBlockIndex = slots[slotIndex].itemSlot.stack.id;
         }
     }
 }

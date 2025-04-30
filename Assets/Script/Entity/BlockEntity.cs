@@ -78,6 +78,16 @@ public class BlockEntity{
     {
         return isNotNull;
     }
+
+    public virtual bool IsCanUse(){
+        return false;
+    }
+
+    public virtual void UseBlock(){
+        if(!IsCanUse()){
+            return;
+        }
+    }
 }
 
 public class BlockCoord{
@@ -95,20 +105,6 @@ public class BlockCoord{
         y = _y;
         z = _z;
     }
-
-    // public BlockCoord(Vector3 pos)
-    // {
-    //     int xCheck = Mathf.FloorToInt(pos.x);
-    //     int zCheck = Mathf.FloorToInt(pos.z);
-    //     if (xCheck >= 0)
-    //         x = xCheck / VoxelData.chunkWidth;
-    //     else
-    //         x = (xCheck + 1) / VoxelData.chunkWidth - 1;
-    //     if (zCheck >= 0)
-    //         z = zCheck / VoxelData.chunkWidth;
-    //     else
-    //         x = (zCheck + 1) / VoxelData.chunkWidth - 1;
-    // }
 
     public bool Equals(BlockCoord other)
     {
@@ -134,6 +130,13 @@ public class BlockCoord{
         x = (x % size + size) % size;
         z = (z % size + size) % size;
         return new(x, y, z);
+    }
+    public static BlockCoord ToBlockCoord(Vector3Int pos)
+    {
+        int size = ChunkEntity.chunkSize;
+        pos.x = (pos.x % size + size) % size;
+        pos.z = (pos.z % size + size) % size;
+        return new(pos.x, pos.y, pos.z);
     }
 
     public override string ToString(){

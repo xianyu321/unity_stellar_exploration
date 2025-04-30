@@ -60,6 +60,16 @@ public class WorldGenerator
         return chunk.GetBlock(blockCoord.x, blockCoord.y, blockCoord.z);
     }
 
+    public ChunkEntity GetChunkByBlockCoord(int x, int z){
+        ChunkCoord chunkCoord = ChunkManager.ToChunkCoord(x, z);
+        return GetChunk(chunkCoord);
+    }
+
+    public ChunkEntity GetChunkByBlockCoord(Vector3Int pos){
+        ChunkCoord chunkCoord = ChunkManager.ToChunkCoord(pos.x, pos.z);
+        return GetChunk(chunkCoord);
+    }
+
     public void GeneratorChunk(ChunkCoord coord, ChunkEntity chunk){
         if (!chunks.ContainsKey(coord.x))
         {

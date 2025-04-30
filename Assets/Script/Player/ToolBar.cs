@@ -32,8 +32,8 @@ public class ToolBar : MonoBehaviour
         return GetNowItem().GetItem().id;
     }
 
-    void SetItem(UIItemEntity slot, int index){
-        uiItems[index] = slot;
+    public bool NowHasItem(){
+        return GetNowItem().GetItem() != null;
     }
     
     private void InitNode(){
@@ -42,7 +42,7 @@ public class ToolBar : MonoBehaviour
         for(int i = 0 ; i < transform.childCount; ++ i){
             item[i] = transform.GetChild(i);
             uiItems[i] = item[i].GetComponent<UIItemEntity>();
-            uiItems[i].InitData(new(i, 100));
+            uiItems[i].InitData(new(i, 5));
         }
     }
 
@@ -52,7 +52,7 @@ public class ToolBar : MonoBehaviour
         highlight.position = highlight.parent.position;
     }
 
-    public UIItemSlot GetSlotNow(){
+    public UIItemEntity GetSlotNow(){
         return null;
     }
 

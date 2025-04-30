@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class DebugScreen : MonoBehaviour
 {
-    World world;
+    public WorldEntity world;
     TMP_Text text;
     // Start is called before the first frame update
     float frameRate;
@@ -16,7 +16,7 @@ public class DebugScreen : MonoBehaviour
 
     void Start()
     {
-        world = GameObject.Find("World").GetComponent<World>();
+        // world = GameObject.Find("World").GetComponent<World>();
         text = GetComponent<TMP_Text>();
 
         halfWorldSizeInVoxels = VoxelData.worldSizeInVoxels / 2;
@@ -29,9 +29,9 @@ public class DebugScreen : MonoBehaviour
         string debugText = "debug text\n"; 
         debugText +=frameRate + " FPS";
         debugText += "\n";
-        debugText += "XYZ: " + (Mathf.FloorToInt(world.player.transform.position.x) - halfWorldSizeInVoxels) + " / " + Mathf.FloorToInt(world.player.transform.position.y) + " / " + (Mathf.FloorToInt(world.player.transform.position.z) - halfWorldSizeInVoxels);
+        // debugText += "XYZ: " + (Mathf.FloorToInt(world.player.transform.position.x) - halfWorldSizeInVoxels) + " / " + Mathf.FloorToInt(world.player.transform.position.y) + " / " + (Mathf.FloorToInt(world.player.transform.position.z) - halfWorldSizeInVoxels);
         debugText += "\n";
-        debugText += "Chunk: " + (world.playerChunkCoord.x - halfWorldSizeInChunks) + " / " + (world.playerChunkCoord.z - halfWorldSizeInChunks);
+        // debugText += "Chunk: " + (world.playerChunkCoord.x - halfWorldSizeInChunks) + " / " + (world.playerChunkCoord.z - halfWorldSizeInChunks);
 
 
         text.text = debugText;

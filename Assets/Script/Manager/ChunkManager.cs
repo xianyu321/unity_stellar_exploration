@@ -2,7 +2,6 @@ using UnityEngine;
 //方块
 public class ChunkManager
 {
-    static int chunkSize = 16;
     public ChunkEntity GetChunk(){
         return null;
     }

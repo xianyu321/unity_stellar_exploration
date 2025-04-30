@@ -14,7 +14,6 @@ public class ChunkEntity{
     public BlockEntity[,,] blocks = new BlockEntity[chunkSize,chunkHight,chunkSize];
     public Biome[,] biome = new Biome[chunkSize,chunkSize];
     WorldEntity world;//区块所在世界
-    [Rename("区块坐标")]
     public GameObject chunkObject;//区块对象 
     MeshRenderer meshRenderer;//mesh渲染器
     MeshFilter meshFilter;//mesh过滤器
@@ -25,14 +24,8 @@ public class ChunkEntity{
     List<Vector3> normals = new List<Vector3>();
     List<int> transparentTriangles = new List<int>();//可透视贴图
     Material[] materials = new Material[2]; //材质数组
-    public VoxelState[,,] voxelMap = new VoxelState[VoxelData.chunkWidth, VoxelData.chunkHeight, VoxelData.chunkWidth];//判断有没有方块
-    private bool _isActive;
-    private bool isVoxelMapPopulated = false;
-    // private bool threadLocked;
     //区块坐标
     public Vector3 position;
-
-    public Queue<VoxelMod> modifications = new Queue<VoxelMod>();
 
     List<Color> colors = new List<Color>();
     
@@ -107,6 +100,7 @@ public class ChunkEntity{
             }
             blocks[blockCoord.x, blockCoord.y, blockCoord.z] = new(this, blockCoord, blockId);
             UpdateChunk();
+            return true;
         }
         return false;
     }

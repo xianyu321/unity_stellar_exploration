@@ -20,8 +20,11 @@ public class PlayerEntity:MonoBehaviour
     public float contactDis = 8f;//最大触碰距离
     public ToolBar toolBar;
     public bool IsShiftDown = false;
-
     private bool _inUI;
+    public GameObject EscUI;
+    public GameObject BackpackUI;
+    public bool isShowEscUI = false;
+    public bool isShowBackPack = false;
     public bool inUI
     {
         get
@@ -51,13 +54,35 @@ public class PlayerEntity:MonoBehaviour
         toolBar.Initialize(this);
         world = WorldManager.Instance.GetOrCreateWorld(new());
         Cursor.lockState = CursorLockMode.Locked;
+        EscUI.SetActive(isShowEscUI);
+        BackpackUI.SetActive(isShowBackPack);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            inUI = !inUI;
+            if(isShowBackPack){
+                BackpackUI.SetActive(false);
+                isShowBackPack = false;
+                inUI = false;
+            }else if(!inUI){
+                BackpackUI.SetActive(true);
+                isShowBackPack = true;
+                inUI = true;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(isShowEscUI){
+                EscUI.SetActive(false);
+                isShowEscUI = false;
+                inUI = false;
+            }else if(!inUI){
+                EscUI.SetActive(true);
+                isShowEscUI = true;
+                inUI = true;
+            }
         }
         if (!inUI)
         {
@@ -72,10 +97,6 @@ public class PlayerEntity:MonoBehaviour
 
     private void FixedUpdate()
     {
-        // if (!inUI)
-        // {
-        //     CalulateCam();
-        // }
         movement.FixedUpdate();
     }
     //处理视角移动
@@ -104,11 +125,11 @@ public class PlayerEntity:MonoBehaviour
             if (Input.GetMouseButtonDown(1) && isTouchBlock)
             {
                 if(IsShiftDown){
-                    if(world.PlacedBlock(placedBlockPos, toolBar.GetNowItemID())){
+                    if(toolBar.NowHasItem() && world.PlacedBlock(placedBlockPos, toolBar.GetNowItemID())){
                         toolBar.GetNowItem().TakeOne();
                     }
                 }else if(!world.GetBlock(brokenBlockPos).IsCanUse()){
-                    if(world.PlacedBlock(placedBlockPos, toolBar.GetNowItemID())){
+                    if(toolBar.NowHasItem() && world.PlacedBlock(placedBlockPos, toolBar.GetNowItemID())){
                         toolBar.GetNowItem().TakeOne();
                     }
                 }else{

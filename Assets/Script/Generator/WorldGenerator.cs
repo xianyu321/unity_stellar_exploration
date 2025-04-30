@@ -9,7 +9,6 @@ using UnityEngine.UIElements;
 public class WorldGenerator
 {
     public Dictionary<int, Dictionary<int, ChunkEntity>> chunks;
-    int seed = 0;
     float offset = 0;
     float scale = 0.1f;
 
@@ -41,7 +40,7 @@ public class WorldGenerator
 
     public bool IsBlock(int x, int y, int z){
         BlockEntity block = GetBlock(x, y, z);
-        if(block is null){
+        if(!block.IsEntity()){
             return false;
         }
         return block.IsBlock();
@@ -49,12 +48,12 @@ public class WorldGenerator
 
     public BlockEntity GetBlock(int x, int y, int z){
         if(y < 0){
-            return null;
+            return new();
         }
         ChunkCoord chunkCoord = ChunkManager.ToChunkCoord(x, z);
         ChunkEntity chunk = GetChunk(chunkCoord);
         if(chunk is null){
-            return null;
+            return new();
         }
         BlockCoord blockCoord = BlockCoord.ToBlockCoord(x, y, z);
         return chunk.GetBlock(blockCoord.x, blockCoord.y, blockCoord.z);

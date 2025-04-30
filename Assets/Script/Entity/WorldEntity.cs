@@ -48,10 +48,6 @@ public class WorldEntity{
     }
 
     public BlockEntity GetBlock(Vector3Int pos){
-        BlockEntity blockEntity = worldGenerator.GetBlock(pos.x, pos.y, pos.z);
-        if(blockEntity is null){
-            return new BlockEntity();
-        }
         return worldGenerator.GetBlock(pos.x, pos.y, pos.z);
     }
 

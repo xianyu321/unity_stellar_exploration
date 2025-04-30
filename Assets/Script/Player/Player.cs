@@ -12,19 +12,19 @@ public class Player : MonoBehaviour
     public bool isSquating = false;
     [Header("走路跑步参数")]
     //向前走路速度
-    public float frontWalkSpeed = 2f;
+    public float frontWalkSpeed = 4f;
     //向前跑步时速度
-    public float frontSprintSpeed = 5f;
+    public float frontSprintSpeed = 7f;
     //左右走路时速度
-    public float horizontalWalkSpeed = 1.5f;
+    public float horizontalWalkSpeed = 2.5f;
     //左右跑步时速度
-    public float horizontalSprintSeppd = 2f;
+    public float horizontalSprintSeppd = 3f;
     //向后走路速度
-    public float backWalkSpeed = 1.5f;
+    public float backWalkSpeed = 2.5f;
     //跳跃力度
-    public float jumpForce = 6f;
+    public float jumpForce = 8f;
     //重力
-    public float gravity = -15f;
+    public float gravity = -20f;
     //最大下落速度
     public float maxFallSpeed = -20f;
     //蹲下时的速度倍率
@@ -388,7 +388,6 @@ public class Player : MonoBehaviour
                     return true;
                 }
             }
-
         }
         // if (
         // world.CheckForVoxel(new Vector3(nextMove.x + playerWidth * dxz.x, nextMove.y, nextMove.z + playerWidth * dxz.y)) ||

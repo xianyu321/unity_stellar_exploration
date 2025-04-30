@@ -8,13 +8,12 @@ using UnityEngine;
 using UnityEngine.UIElements;
 
 public class ChunkEntity{
-    WorldGenerator worldGenerator;
     public static readonly int chunkSize = 16;
     public static readonly int chunkHight = 128;
     public ChunkCoord chunkCoord;
     public BlockEntity[,,] blocks = new BlockEntity[chunkSize,chunkHight,chunkSize];
     public Biome[,] biome = new Biome[chunkSize,chunkSize];
-    World world;//区块所在世界
+    WorldEntity world;//区块所在世界
     [Rename("区块坐标")]
     public GameObject chunkObject;//区块对象 
     MeshRenderer meshRenderer;//mesh渲染器
@@ -37,9 +36,9 @@ public class ChunkEntity{
 
     List<Color> colors = new List<Color>();
     
-    public ChunkEntity(ChunkCoord _chunkCoord, WorldGenerator _worldGenerator){
+    public ChunkEntity(ChunkCoord _chunkCoord, WorldEntity _world){
         chunkCoord = _chunkCoord;
-        worldGenerator = _worldGenerator;
+        world = _world;
         InitBlocks();
         Init();
         // UpdateChunk();
@@ -95,6 +94,13 @@ public class ChunkEntity{
         }
         CreateMesh();
     }
+
+    public void BrokenBlock(BlockCoord blockCoord){
+        if(IsVoxelInChunk(blockCoord)){
+            blocks[blockCoord.x, blockCoord.y, blockCoord.z] = null;
+        }
+    }
+    
     //清空贴图数据
     void ClearMeshData()
     {
@@ -164,13 +170,19 @@ public class ChunkEntity{
         int y = Mathf.FloorToInt(pos.y);
         int z = Mathf.FloorToInt(pos.z);
         if (!IsVoxelInChunk(x, y, z))
-            return !worldGenerator.IsBlock(x + chunkCoord.x * chunkSize, y,z + chunkCoord.z * chunkSize);
+            return !world.IsBlock(x + chunkCoord.x * chunkSize, y,z + chunkCoord.z * chunkSize);
         return blocks[x, y, z] is null;
     }
     //是否在本区块内
     bool IsVoxelInChunk(int x, int y, int z)
     {
         if (x < 0 || x > chunkSize - 1 || y < 0 || y > chunkHight - 1 || z < 0 || z > chunkSize - 1)
+            return false;
+        return true;
+    }
+    bool IsVoxelInChunk(BlockCoord coord)
+    {
+        if (coord.x < 0 || coord.x > chunkSize - 1 || coord.y < 0 || coord.y > chunkHight - 1 || coord.z < 0 || coord.z > chunkSize - 1)
             return false;
         return true;
     }
@@ -194,19 +206,22 @@ public class ChunkEntity{
     }
 
     //y是高度
-    BlockEntity GetBlock(int x, int y, int z){
+    public BlockEntity GetBlock(int x, int y, int z){
         if (x >= 0 && x < blocks.GetLength(0) &&
             y >= 0 && y < blocks.GetLength(1) &&
             z >= 0 && z < blocks.GetLength(2))
         {
+            if(blocks[x, y, z] is null){
+                return new();
+            }
             return blocks[x, y, z];
         }
-        return null;
+        return new();
     }
 
     int GetBlockID(int x, int y, int z){
         BlockEntity block = GetBlock(x, y , z);
-        if(block is null){
+        if(!block.IsEntity()){
             return -1;
         }
         return block.blockID;

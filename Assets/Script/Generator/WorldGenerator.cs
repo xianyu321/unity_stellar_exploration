@@ -8,22 +8,18 @@ using UnityEngine.UIElements;
 
 public class WorldGenerator
 {
-    public Dictionary<int, Dictionary<int, ChunkEntity>> chunks = new Dictionary<int, Dictionary<int, ChunkEntity>>();
+    public Dictionary<int, Dictionary<int, ChunkEntity>> chunks;
     int seed = 0;
     float offset = 0;
     float scale = 0.1f;
 
     public virtual void GenerateChunk(ChunkEntity chunk){
         GeneratorChunk(chunk.chunkCoord, chunk);
-        GenerateBase(chunk);
+        GenerateChunkBase(chunk);
     }
 
-    public virtual void GenerateChunk(ChunkCoord coord){
-        GeneratorChunk(coord, new(coord, this));
-        GenerateBase(chunks[coord.x][coord.z]);
-    }
     //构造基础属性
-    public virtual void GenerateBase(ChunkEntity chunk){
+    public virtual void GenerateChunkBase(ChunkEntity chunk){
         for(int x = 0; x < ChunkEntity.chunkSize; ++x){
             for(int z = 0; z < ChunkEntity.chunkSize; ++z){
                 chunk.blocks[x, 0, z] = new(chunk, new(x, 0, z), BlockEnum.StoneCutter);
@@ -44,20 +40,24 @@ public class WorldGenerator
     }
 
     public bool IsBlock(int x, int y, int z){
-        if(y < 0){
+        BlockEntity block = GetBlock(x, y, z);
+        if(block is null){
             return false;
+        }
+        return block.IsBlock();
+    }
+
+    public BlockEntity GetBlock(int x, int y, int z){
+        if(y < 0){
+            return null;
         }
         ChunkCoord chunkCoord = ChunkManager.ToChunkCoord(x, z);
         ChunkEntity chunk = GetChunk(chunkCoord);
         if(chunk is null){
-            return false;
+            return null;
         }
         BlockCoord blockCoord = BlockCoord.ToBlockCoord(x, y, z);
-        // Debug.Log(blockCoord);
-        if(chunk.blocks[blockCoord.x, blockCoord.y, blockCoord.z] is not null){
-            return chunk.blocks[blockCoord.x, blockCoord.y, blockCoord.z].IsBlock();
-        }
-        return false;
+        return chunk.GetBlock(blockCoord.x, blockCoord.y, blockCoord.z);
     }
 
     public void GeneratorChunk(ChunkCoord coord, ChunkEntity chunk){

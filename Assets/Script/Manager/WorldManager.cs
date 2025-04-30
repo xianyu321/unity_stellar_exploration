@@ -1,12 +1,12 @@
 
 
 
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class WorldManager
+public class WorldManager : MonoBehaviour
 {
-    
+    private Dictionary<string, WorldEntity> worlds = new();
     private static WorldManager _instance;
     public static WorldManager Instance
     {
@@ -20,28 +20,17 @@ public class WorldManager
         }
     }
 
-    public void GenerateByPlayerPos(){
-        WorldGenerator worldGenerator = new();
-        Vector3 pos = new Vector3(0, 0, 0);
-        ChunkCoord coord = ChunkManager.ToChunkCoord(pos);
-        int width = 4;
-        for(int x = coord.x - width; x <= coord.x + width; ++ x){
-            for(int z = coord.z - width; z <= coord.z + width; ++z){
-                ChunkEntity chunk = new(new(x,z), worldGenerator);
-                worldGenerator.GenerateChunk(chunk);
-                GameObject chunks = GameObject.Find("Chunks");
-                chunk.chunkObject.transform.SetParent(chunks.transform);
-                // chunk.UpdateChunk();
-            }
-        }
-        for(int x = coord.x - width; x <= coord.x + width; ++ x){
-            for(int z = coord.z - width; z <= coord.z + width; ++z){
-                ChunkEntity chunk = worldGenerator.GetChunk(new(x, z));
-                chunk.UpdateChunk();
-            }
-        }
+    public void Awake()
+    {
+        GetOrCreateWorld(new());
     }
-    public void GenerateChunk(){
 
+    public WorldEntity GetOrCreateWorld(WorldGenerator worldGenerator){
+        string key = worldGenerator.GetType().Name;
+        if(worlds.ContainsKey(key)){
+            return worlds[key];
+        }
+        worlds[key] = new(worldGenerator);
+        return worlds[key];
     }
 }

@@ -17,6 +17,12 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: f43f76adb51d56a4ba07b8843fe414e2
   m_SerializeEntries:
+  - m_GUID: 1e2554068c3259148801f5aa0af1211c
+    m_Address: DebugUI_zh-Hans
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-zh-Hans
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 440fd421706b1874f89c628f3a6b62fe
     m_Address: Main String Table_zh-Hans
     m_ReadOnly: 1

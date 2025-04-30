@@ -27,6 +27,11 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dbb3b8c65c0d01946809545aa9e64ecd
+    m_Address: Assets/Languages/Table/DebugUI Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 4df57c1ce47c91444871001a93e80f3a, type: 2}
   m_SchemaSet:

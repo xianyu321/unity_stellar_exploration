@@ -13,18 +13,17 @@ public class DragAndDropHandler : MonoBehaviour
     private PointerEventData m_PointerEventData;
     [SerializeField] private EventSystem m_EventSystem = null;
 
-    World world;
-
     private void Start(){
-        world = GameObject.Find("World").GetComponent<World>();
+        // world = GameObject.Find("World").GetComponent<World>();
 
         cursorItemSlot = new ItemSlot(cursorSlot);
     }
 
     private void Update(){
-        if(!world.inUI){
-            return;
-        }
+        return;
+        // if(!world.inUI){
+        //     return;
+        // }
         if(cursorSlot == null){
             Debug.Log(1);
         }

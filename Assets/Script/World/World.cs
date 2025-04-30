@@ -105,7 +105,7 @@ public class World : MonoBehaviour
         // chunk.UpdateChunk();
         // saveManager.SaveChunkToBinary(chunk);
 
-        WorldManager.Instance.GenerateByPlayerPos();
+        WorldManager.Instance.GetOrCreateWorld(new WorldGenerator());
         Debug.Log("代码执行耗时: " + stopwatch.ElapsedMilliseconds + " ms");
 
     }

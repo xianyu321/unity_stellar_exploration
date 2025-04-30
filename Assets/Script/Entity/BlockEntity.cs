@@ -5,8 +5,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class BlockEntity{
+    public bool isNotNull = true;
     public int blockID;
-    ChunkEntity chunk;
+    public ChunkEntity chunk;
     public BlockCoord blockCoordInChunk;
     public ChunkCoord chunkCoord{
         get{
@@ -41,6 +42,10 @@ public class BlockEntity{
         FromData(blockData);
     }
 
+    public BlockEntity(){
+        isNotNull = false;
+    }
+
     public string ToData()
     {
         return $"blockID={blockID};";
@@ -66,7 +71,12 @@ public class BlockEntity{
         if(blockID >= 0){
             return true;
         }
-        return false;
+        return isNotNull;
+    }
+
+    public bool IsEntity()
+    {
+        return isNotNull;
     }
 }
 

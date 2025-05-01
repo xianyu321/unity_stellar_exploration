@@ -197,7 +197,7 @@ public class ChunkEntity{
         int rols = TextureManager.Instance.textureRols;
         float y = textureID / rols;
         float x = textureID - (y * rols);
-        float texSize = 1f / (float)rols;
+        float texSize = 1f / rols;
 
         x *= texSize;
         y *= texSize;

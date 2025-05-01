@@ -36,6 +36,7 @@ public class BlockManager
     {
         // 假设我们从 JSON 文件加载数据
         string jsonContent = FileLoader.GetBlocksJsonFile(); // 你可以根据需求调整路径
+        Debug.Log(jsonContent);
         Blocks = Newtonsoft.Json.JsonConvert.DeserializeObject<List<BlockJsonData>>(jsonContent);
 
         if (Blocks == null || Blocks.Count == 0)

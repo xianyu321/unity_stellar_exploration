@@ -44,19 +44,22 @@ public static class FileLoader
 
     public static string GetBlocksJsonFile(){
         string jsonPath =  PathLoader.GetBlocksPath();
-        jsonPath = Path.Combine(jsonPath, "blocks.json");
-        return LoadJsonFile(jsonPath);
+        jsonPath = Path.Combine(jsonPath, "blocks");
+        return Resources.Load<TextAsset>(jsonPath).text;
+        // return LoadJsonFile(jsonPath);
     }
 
     public static Texture2D GetBlockTextureFile(){
         string texPath = PathLoader.GetBlocksPath();
-        texPath = Path.Combine(texPath, "texture.png");
-        return LoadImageFile(texPath);
+        texPath = Path.Combine(texPath, "texture");
+        return Resources.Load<Texture2D>(texPath);
+        // return LoadImageFile(texPath);
     }
 
     public static Texture2D GetBlockIconFile(){
         string iconPath = PathLoader.GetBlocksPath();
-        iconPath = Path.Combine(iconPath, "icon.png");
-        return LoadImageFile(iconPath);
+        iconPath = Path.Combine(iconPath, "icon");
+        return Resources.Load<Texture2D>(iconPath);
+        // return LoadImageFile(iconPath);
     }
 }

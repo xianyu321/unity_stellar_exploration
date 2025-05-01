@@ -22,7 +22,8 @@ public static class PathLoader{
         return Path.Combine(GetAssetsPath(), "MyDatas");
     }
     public static string GetTexturesPath(){
-        return Path.Combine(GetDatePath(), "Textures");
+        return "Textures";
+        // return Path.Combine(GetDatePath(), "Textures");
     }
     public static string GetBlocksPath(){
         return Path.Combine(GetTexturesPath(), "blocks");

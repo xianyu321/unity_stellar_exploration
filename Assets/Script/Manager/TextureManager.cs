@@ -11,7 +11,6 @@ public class TextureManager{
     public static readonly int blockTextureSize = 16;
     public static readonly int blockIconSize = 64;
     public Material blockMaterial;
-    List<Sprite> blockTexture = new List<Sprite>();
     public List<Sprite> blockIcon = new List<Sprite>();
     public int textureRols = 0;
     // 全局访问点
@@ -46,8 +45,9 @@ public class TextureManager{
     void InitBlockIcon(){
         Texture2D tex = FileLoader.GetBlockIconFile();
         int rols = tex.width / blockIconSize;
-        foreach(int x in Enumerable.Range(0, rols)){
-            foreach(int y in Enumerable.Range(0, rols)){
+        foreach(int y in Enumerable.Range(0, rols)){
+            foreach(int x in Enumerable.Range(0, rols)){
+
                 float startY = tex.height - (y + 1) * blockIconSize;
                 Sprite sprite = Sprite.Create(
                     tex,

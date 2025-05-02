@@ -15,7 +15,7 @@ public static class PathLoader{
     public static string GetAssetsPath(){
         return Application.dataPath;
     }
-    public static string GetDesktop(){
+    public static string GetSaveFatherPath(){
         return Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
     }
     public static string GetDatePath(){
@@ -29,7 +29,7 @@ public static class PathLoader{
         return Path.Combine(GetTexturesPath(), "blocks");
     }
     public static string GetSavesPath(){
-        return SplicingAndCreatePath(GetDesktop(), "Saves");
+        return SplicingAndCreatePath(GetSaveFatherPath(), "Saves");
         // return SplicingAndCreatePath(GetAssetsPath(), "Saves");
     }
     public static string GetSavePath(string saveName){
@@ -38,8 +38,6 @@ public static class PathLoader{
     public static string GetWorldsPath(string saveName){
         return SplicingAndCreatePath(GetSavePath(saveName), "worlds");
     }
-
-
 
     public static string GetChunksPath(string saveName, string worldName){
         string worldPath = SplicingAndCreatePath(GetWorldsPath(saveName), worldName);

@@ -11,7 +11,8 @@ public class PlayerEntity:MonoBehaviour
     public GameObject PlayerItem;
     public PlayerMovement movement;
     public WorldEntity world;//所处世界
-    protected Transform cam;//玩家摄像机
+    public Transform playLook;//玩家视角
+    public Camera camLook;//摄像机视角
     private float pitch = 0f; // 上下视角角度
     protected float mouseHorizontal;//鼠标横坐标
     protected float mouseVertical;//鼠标纵坐标
@@ -25,6 +26,7 @@ public class PlayerEntity:MonoBehaviour
     public GameObject BackpackUI;
     public bool isShowEscUI = false;
     public bool isShowBackPack = false;
+    public bool isOpenF3 = false;
     public bool inUI
     {
         get
@@ -46,16 +48,21 @@ public class PlayerEntity:MonoBehaviour
             }
         }
     }
+    protected int selfMask;
+
+    public Animator anim;
 
     private void Start()
     {
-        cam = GameObject.Find("Main Camera").transform;
+        // cam = GameObject.Find("Main Camera").transform;
         movement = new PlayerMovement(this);
         toolBar.Initialize(this);
         world = WorldManager.Instance.GetOrCreateWorld(new());
         Cursor.lockState = CursorLockMode.Locked;
         EscUI.SetActive(isShowEscUI);
         BackpackUI.SetActive(isShowBackPack);
+        selfMask = 1 << LayerMask.NameToLayer("SelfBody");
+        this.PlayerItem.transform.position = new Vector3(0, 60, 0);
     }
 
     private void Update()
@@ -84,6 +91,15 @@ public class PlayerEntity:MonoBehaviour
                 inUI = true;
             }
         }
+        if(Input.GetKeyDown(KeyCode.F3)){
+            isOpenF3 = !isOpenF3;
+            if(isOpenF3){
+                camLook.cullingMask |= selfMask;
+            }else{
+                camLook.cullingMask &= ~selfMask;
+            }
+        }
+
         if (!inUI)
         {
             //获取轴线
@@ -98,6 +114,7 @@ public class PlayerEntity:MonoBehaviour
     private void FixedUpdate()
     {
         movement.FixedUpdate();
+        UpdateAnim();
     }
     //处理视角移动
     private void CalulateCam(){
@@ -106,8 +123,13 @@ public class PlayerEntity:MonoBehaviour
         //处理垂直视角
         pitch -= mouseVertical * setting.mouseSensitivity;
         pitch = Mathf.Clamp(pitch, -90, 90);
-        cam.localRotation = Quaternion.Euler(pitch, 0f, 0f);
+        playLook.localRotation = Quaternion.Euler(pitch, 0f, 0f);
         PlayerItem.transform.Translate(velocity, Space.World);
+        if(isOpenF3){
+            camLook.transform.position = playLook.position - playLook.forward * 5f;
+        }else{
+            camLook.transform.position = playLook.position;
+        }
     }
 
     private void GetPlayerInput()
@@ -139,6 +161,10 @@ public class PlayerEntity:MonoBehaviour
         }
     }
 
+    private void UpdateAnim() {
+        
+    }
+
     Vector3Int placedBlockPos;
     Vector3Int brokenBlockPos;
     Ray ray;
@@ -155,11 +181,11 @@ public class PlayerEntity:MonoBehaviour
     };
     protected void placeCursorBlock()
     {
-        Vector3 startPos = cam.position;
+        Vector3 startPos = playLook.position;
         Vector3Int startBlockPos = VectorTools.Vct3ToVec3Int(startPos);
         placedBlockPos = startBlockPos;
         brokenBlockPos = startBlockPos;
-        ray = new Ray(startPos, cam.transform.forward);
+        ray = new Ray(startPos, playLook.transform.forward);
         visited = new();
         endDfs = false;
         dfsFind = false;

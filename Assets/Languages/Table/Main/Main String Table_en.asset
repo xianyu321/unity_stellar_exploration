@@ -34,6 +34,30 @@ MonoBehaviour:
     m_Localized: Exit
     m_Metadata:
       m_Items: []
+  - m_Id: 16351374694420480
+    m_Localized: LAN-accessible
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16420288350654464
+    m_Localized: Saves
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16425206973206528
+    m_Localized: Remove
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16426381239914496
+    m_Localized: Edit World
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16426558893854720
+    m_Localized: Join World
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16440757162348544
+    m_Localized: Create World
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

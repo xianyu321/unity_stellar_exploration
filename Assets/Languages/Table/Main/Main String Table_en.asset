@@ -58,6 +58,34 @@ MonoBehaviour:
     m_Localized: Create World
     m_Metadata:
       m_Items: []
+  - m_Id: 16460370432495616
+    m_Localized: Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16460500065849344
+    m_Localized: Confirm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16461410120765440
+    m_Localized: Tips
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16701887466180608
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16714681330700288
+    m_Localized: Sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16719191432237056
+    m_Localized: Sensitivity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16720549950525440
+    m_Localized: Save
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

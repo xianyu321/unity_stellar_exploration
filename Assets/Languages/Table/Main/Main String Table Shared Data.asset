@@ -55,6 +55,34 @@ MonoBehaviour:
     m_Key: Create World
     m_Metadata:
       m_Items: []
+  - m_Id: 16460370432495616
+    m_Key: Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16460500065849344
+    m_Key: Confirm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16461410120765440
+    m_Key: Tips
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16701887466180608
+    m_Key: language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16714681330700288
+    m_Key: sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16719191432237056
+    m_Key: Sensitivity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16720549950525440
+    m_Key: Save
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

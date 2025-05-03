@@ -15,8 +15,9 @@ public static class PathLoader{
     public static string GetAssetsPath(){
         return Application.dataPath;
     }
-    public static string GetSaveFatherPath(){
-        return Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+    public static string GetLocalPath(){
+        string father = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        return SplicingAndCreatePath(father, "LocalFiles");
     }
     public static string GetDatePath(){
         return Path.Combine(GetAssetsPath(), "MyDatas");
@@ -29,8 +30,10 @@ public static class PathLoader{
         return Path.Combine(GetTexturesPath(), "blocks");
     }
     public static string GetSavesPath(){
-        return SplicingAndCreatePath(GetSaveFatherPath(), "Saves");
-        // return SplicingAndCreatePath(GetAssetsPath(), "Saves");
+        return SplicingAndCreatePath(GetLocalPath(), "Saves");
+    }
+    public static string GetAppConfigPath(){
+        return SplicingAndCreatePath(GetLocalPath(), "AppConfig");
     }
     public static string GetSavePath(string saveName){
         return SplicingAndCreatePath(GetSavesPath(), saveName);

@@ -3,19 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SaveItemUI : MonoBehaviour
 {
     string _saveName;
-    string saveName{
+    public string saveName{
         get{
             return _saveName;
         }
         set{
             _saveName = value;
-            if (nameTMP is not null)
+            if (nameTMP != null)
             {
                 nameTMP.text = _saveName;
             }
@@ -28,7 +28,8 @@ public class SaveItemUI : MonoBehaviour
         }
         set{
             _createTime = value;
-            if(createTimeTMP is not null){
+            if(createTimeTMP != null)
+            {
                 createTimeTMP.text = _createTime.ToString();
             }
         }
@@ -42,14 +43,24 @@ public class SaveItemUI : MonoBehaviour
     }
 
     public void OnDeleteClicked(){
-
+        string folderPath = Path.Combine(PathLoader.GetSavesPath(), this.saveName);
+        try
+        {
+            Directory.Delete(folderPath, false);
+            Debug.Log("存档删除成功: " + folderPath);
+            Destroy(this.gameObject);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("存档删除失败: " + e.Message);
+        }
     }
 
     public void OnEditClicked(){
-
+        
     }
 
     public void OnJoinClicked(){
-
+        SceneManager.LoadScene("DebugScene");
     }
 }

@@ -7,39 +7,24 @@ public class MenuController : MonoBehaviour
 {
     public GameObject savesUI;
     public GameObject sultiplayUI;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    public GameObject optionUI;
     public void onSingleplayerBtnClick(){
         savesUI.SetActive(true);
-        Debug.Log("onSingleplayerBtn");
-        SceneManager.LoadScene("DebugScene");
         return;
     }
 
     public void onMultiplayerBtnClick(){
         sultiplayUI.SetActive(true);
-        Debug.Log("onMultiplayerBtn");
         return;
-
     }
 
     public void onOptionsBtnClick(){
-        Debug.Log("onOptionsBtn");
+        optionUI.SetActive(true);
         return;
     }
 
     public void onExitBtnClick(){
-        Debug.Log("onExitBtn");
+        Application.Quit();
         return;
     }
 }

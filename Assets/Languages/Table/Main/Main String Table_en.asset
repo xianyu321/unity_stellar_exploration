@@ -86,6 +86,34 @@ MonoBehaviour:
     m_Localized: Save
     m_Metadata:
       m_Items: []
+  - m_Id: 16787599557398528
+    m_Localized: World Setting
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16787826314055680
+    m_Localized: Difficulty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16788070858756096
+    m_Localized: Normal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16788371686821888
+    m_Localized: Hard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16789172954075136
+    m_Localized: Save Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16790659209891840
+    m_Localized: World Seed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16790995467243520
+    m_Localized: Player HP
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

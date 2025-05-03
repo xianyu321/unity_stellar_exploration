@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class MultiplayUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void OnExitClicked()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        this.gameObject.SetActive(false);
     }
 }

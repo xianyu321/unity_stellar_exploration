@@ -16,12 +16,16 @@ public class SavesUI : MonoBehaviour
     void OnEnable()
     {
         InitData();
+        EventManager.On("UpdateSavesUI", InitData);
+    }
+    void OnDisable(){
+        EventManager.Off("UpdateSavesUI", InitData);
     }
 
     public GameObject saveItemPrefab;
     public Transform saveContent;
     private List<SaveItemUI> saveItems = new List<SaveItemUI>();
-
+    public WorldSettingUI worldSettingUI;
     public void InitData()
     {
         string directoryPath = PathLoader.GetSavesPath();
@@ -40,7 +44,7 @@ public class SavesUI : MonoBehaviour
                 GameObject item = Instantiate(saveItemPrefab);
                 item.transform.SetParent(saveContent, false);
                 SaveItemUI itemUI = item.GetComponent<SaveItemUI>();
-                itemUI.InitData(dirInfo);
+                itemUI.InitData(dirInfo, worldSettingUI);
                 saveItems.Add(itemUI);
             }
         }
@@ -52,29 +56,21 @@ public class SavesUI : MonoBehaviour
 
     public void OnCreateWorldClicked(){
         string savesPath = PathLoader.GetSavesPath();
-        string savePath = Path.Combine(savesPath, "New World");
-        savePath = GetUniqueFolderPath(savePath);
-        try
-        {
-            Directory.CreateDirectory(savePath);
-            Debug.Log("存档创建成功: " + savePath);
-            InitData();
-        }
-        catch (Exception e)
-        {
-            Debug.LogError("存档创建失败: " + e.Message);
-        }
+        string savePath = Path.Combine(savesPath, "Save");
+        string saveName = GetUniqueFolderPath(savePath);
+        worldSettingUI.gameObject.SetActive(true);
+        worldSettingUI.InitData(saveName);
     }
 
     private string GetUniqueFolderPath(string baseFolderPath)
     {
-        string path = baseFolderPath;
-        int counter = 1;
+        int counter = 0;
+        string path = $"{baseFolderPath}_{counter}";
         while (Directory.Exists(path))
         {
-            path = $"{baseFolderPath}_{counter}";
             counter++;
+            path = $"{baseFolderPath}_{counter}";
         }
-        return path;
+        return $"Save_{counter}";
     }
 }

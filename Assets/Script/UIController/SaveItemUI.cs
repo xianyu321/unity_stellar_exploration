@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class SaveItemUI : MonoBehaviour
 {
     string _saveName;
+
     public string saveName{
         get{
             return _saveName;
@@ -36,17 +37,21 @@ public class SaveItemUI : MonoBehaviour
     }
     public TextMeshProUGUI nameTMP;
     public TextMeshProUGUI createTimeTMP;
-    // TextMeshProUGUI
-    public void InitData(DirectoryInfo dirInfo){
-        saveName = dirInfo.Name;
+    string dirName;
+    WorldSettingUI worldSettingUI;
+    public void InitData(DirectoryInfo dirInfo, WorldSettingUI _worldSettingUI){
+        worldSettingUI = _worldSettingUI;
+        dirName = dirInfo.Name;
+        SaveConfig config = ConfigManager.Instance.GetSaveConfig(dirInfo.Name);
+        saveName = config.name;
         createTime = dirInfo.CreationTime;
     }
 
     public void OnDeleteClicked(){
-        string folderPath = Path.Combine(PathLoader.GetSavesPath(), this.saveName);
+        string folderPath = Path.Combine(PathLoader.GetSavesPath(), dirName);
         try
         {
-            Directory.Delete(folderPath, false);
+            Directory.Delete(folderPath, true);
             Debug.Log("存档删除成功: " + folderPath);
             Destroy(this.gameObject);
         }
@@ -57,7 +62,8 @@ public class SaveItemUI : MonoBehaviour
     }
 
     public void OnEditClicked(){
-        
+        worldSettingUI.gameObject.SetActive(true);
+        worldSettingUI.InitData(dirName, false);
     }
 
     public void OnJoinClicked(){

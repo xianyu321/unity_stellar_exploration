@@ -1,4 +1,5 @@
 using System.IO;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
@@ -17,7 +18,6 @@ public class ConfigManager{
             return _instance;
         }
     }
-    static string appConfigDir = Path.Combine(PathLoader.GetAppConfigPath(), "config.json");
     void Initialize(){
         // mouseSensitivity
     }
@@ -46,6 +46,7 @@ public class ConfigManager{
     }
 
     
+    static string appConfigDir = Path.Combine(PathLoader.GetAppConfigPath(), "config.json");
     public AppConfig GetAppConfig(){
         return LoadFromJson<AppConfig>(appConfigDir);
     }
@@ -56,5 +57,16 @@ public class ConfigManager{
         }else{
             LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[0];
         }
+    }
+    public SaveConfig GetSaveConfig(string savename){
+        string faPath = PathLoader.GetSavePath(savename);
+        string filePath = Path.Combine(faPath, "config.json");
+        return LoadFromJson<SaveConfig>(filePath);
+    }
+
+    public void SaveSaveConfig(SaveConfig config, string savename){
+        string faPath = PathLoader.GetSavePath(savename);
+        string filePath = Path.Combine(faPath, "config.json");
+        SaveToJson<SaveConfig>(config, filePath);
     }
 }

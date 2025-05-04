@@ -21,15 +21,38 @@ public class WorldManager
     }
     WorldManager(){
         worlds = new();
+        BlockManager.Instance.Init();
         // GetOrCreateWorld(new());
     }
 
     public WorldEntity GetOrCreateWorld(WorldGenerator worldGenerator){
-        string key = worldGenerator.GetType().Name;
-        if(worlds.ContainsKey(key)){
-            return worlds[key];
+        string worldName = worldGenerator.GetType().Name;
+        if(worlds.ContainsKey(worldName)){
+            return worlds[worldName];
         }
-        worlds[key] = new(worldGenerator);
-        return worlds[key];
+        worlds[worldName] = new(worldGenerator);
+        return worlds[worldName];
+    }
+    public WorldEntity GetWorld(string worldName){
+        if(worlds.ContainsKey(worldName)){
+            return worlds[worldName];
+        }
+        if(worldName == "WorldGenerator"){
+            worlds[worldName] = new(new WorldGenerator());
+        }
+        return worlds[worldName];
+    }
+
+    string saveName;
+
+    public void InitData(string _saveName){
+        saveName = _saveName;
+        worlds.Clear();
+    }
+
+    public string GetChunksPath(WorldGenerator worldGenerator){
+        string worldName = worldGenerator.GetType().Name;
+        string chunksPath = PathLoader.GetChunksPath(saveName, worldName);
+        return chunksPath;
     }
 }

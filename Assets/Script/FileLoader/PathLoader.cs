@@ -41,6 +41,17 @@ public static class PathLoader{
     public static string GetWorldsPath(string saveName){
         return SplicingAndCreatePath(GetSavePath(saveName), "worlds");
     }
+    public static string GetWorldPath(string saveName, string worldName){
+        return SplicingAndCreatePath(GetWorldsPath(saveName), worldName);
+    }
+
+    public static string GetPlayersPath(string saveName){
+        return SplicingAndCreatePath(GetSavePath(saveName), "players");
+    }
+
+    public static string GetPlayerPath(string saveName, string playerUID){
+        return SplicingAndCreatePath(GetPlayersPath(saveName), playerUID);
+    }
 
     public static string GetChunksPath(string saveName, string worldName){
         string worldPath = SplicingAndCreatePath(GetWorldsPath(saveName), worldName);

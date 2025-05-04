@@ -67,6 +67,7 @@ public class SaveItemUI : MonoBehaviour
     }
 
     public void OnJoinClicked(){
+        WorldManager.Instance.InitData(dirName);
         SceneManager.LoadScene("DebugScene");
     }
 }

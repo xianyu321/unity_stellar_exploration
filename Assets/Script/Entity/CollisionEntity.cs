@@ -71,6 +71,9 @@ public class CollisionEntity : MonoBehaviour
         foreach (Vector3 point in downPoint)
         {
             Vector3Int coord = VectorTools.Vct3ToVec3Int(pos + Vector3.Scale(size, point));
+            if(world.GetChunk(coord.x, coord.z) == null){
+                return 0;
+            }
             for (int i = 1; i < -speed + 1; ++i)
             {
                 coord.y -= 1;

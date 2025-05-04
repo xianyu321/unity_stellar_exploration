@@ -1,9 +1,11 @@
 
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,8 +13,8 @@ public class ChunkEntity{
     public static readonly int chunkSize = 16;
     public static readonly int chunkHight = 128;
     public ChunkCoord chunkCoord;
-    public BlockEntity[,,] blocks = new BlockEntity[chunkSize,chunkHight,chunkSize];
-    public Biome[,] biome = new Biome[chunkSize,chunkSize];
+    public BlockEntity[,,] blocks;
+    public Biome[,] biome;
     WorldEntity world;//区块所在世界
     public GameObject chunkObject;//区块对象 
     MeshRenderer meshRenderer;//mesh渲染器
@@ -26,29 +28,18 @@ public class ChunkEntity{
     Material[] materials = new Material[2]; //材质数组
     //区块坐标
     public Vector3 position;
-
+    public bool isLoad = false;
+    public bool isShow = false;
     List<Color> colors = new List<Color>();
     
     public ChunkEntity(ChunkCoord _chunkCoord, WorldEntity _world){
+        blocks = new BlockEntity[chunkSize,chunkHight,chunkSize];
+        biome = new Biome[chunkSize,chunkSize];
         chunkCoord = _chunkCoord;
         world = _world;
-        InitBlocks();
+
         Init();
         // UpdateChunk();
-    }
-
-    void InitBlocks(){
-        for (int y = 0; y < 10; y++)
-        {
-            for (int x = 0; x < chunkSize; x++)
-            {
-                for (int z = 0; z < chunkSize; z++)
-                {
-                    blocks[x,y,z] = new BlockEntity(this, new BlockCoord(x, y, z), 0);
-                }
-            }
-        }
-        blocks[9, 9, 9] = null;
     }
 
 
@@ -85,7 +76,12 @@ public class ChunkEntity{
                 }
             }
         }
-        CreateMesh();
+        ThreadPool.Instance.MainThreadRun(
+            _=>{
+                CreateMesh();
+                isShow = true;
+            }
+        );
     }
 
     public void BrokenBlock(BlockCoord blockCoord){
@@ -116,11 +112,12 @@ public class ChunkEntity{
         colors.Clear();
         normals.Clear();
     }
-
+    Mesh mesh = new Mesh();
     //创建mesh并装载数据
     public void CreateMesh()
     {
-        Mesh mesh = new Mesh();
+        // Mesh mesh = new Mesh();
+        mesh.Clear();
         mesh.vertices = vertices.ToArray();
         // mesh.triangles = triangles.ToArray();
         mesh.subMeshCount = 2;

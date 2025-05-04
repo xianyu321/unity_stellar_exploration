@@ -22,6 +22,10 @@ public class BlockManager
         }
     }
 
+    public void Init(){
+        
+    }
+
     // 存储所有块的数据
     public List<BlockJsonData> Blocks { get; private set; }
 

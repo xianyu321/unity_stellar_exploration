@@ -1,13 +1,9 @@
 
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Common;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class ChunkEntity
 {
@@ -21,11 +17,11 @@ public class ChunkEntity
     MeshRenderer meshRenderer;//mesh渲染器
     MeshFilter meshFilter;//mesh过滤器
     int vertexIndex = 0;//顶点个数
-    List<Vector3> vertices = new List<Vector3>();//顶点集合
-    List<int> triangles = new List<int>();//三角形面集合
-    List<Vector2> uvs = new List<Vector2>();//贴图数组
-    List<Vector3> normals = new List<Vector3>();
-    List<int> transparentTriangles = new List<int>();//可透视贴图
+    List<Vector3> vertices;//顶点集合
+    List<int> triangles;//三角形面集合
+    List<Vector2> uvs;//贴图数组
+    List<Vector3> normals;
+    List<int> transparentTriangles;//可透视贴图
     Material[] materials = new Material[2]; //材质数组
     //区块坐标
     public Vector3 position;
@@ -35,18 +31,24 @@ public class ChunkEntity
 
     public ChunkEntity(ChunkCoord _chunkCoord, WorldEntity _world)
     {
-        blocks = new BlockEntity[chunkSize, chunkHight, chunkSize];
-        biome = new Biome[chunkSize, chunkSize];
+        chunkObject = new GameObject();
         chunkCoord = _chunkCoord;
         world = _world;
         Init();
-        // UpdateChunk();
     }
-
+    public void InitData()
+    {
+        blocks = new BlockEntity[chunkSize, chunkHight, chunkSize];
+        biome = new Biome[chunkSize, chunkSize];
+        vertices = new List<Vector3>();
+        triangles = new List<int>();
+        uvs = new List<Vector2>();
+        normals = new List<Vector3>();
+        transparentTriangles = new List<int>();
+    }
 
     public void Init()
     {
-        chunkObject = new GameObject();
         //更新区块对象坐标
         chunkObject.transform.position = new Vector3(chunkCoord.x * VoxelData.chunkWidth, 0f, chunkCoord.z * VoxelData.chunkWidth);
         chunkObject.name = chunkCoord.x + ", " + chunkCoord.z;
@@ -77,21 +79,35 @@ public class ChunkEntity
                 }
             }
         }
-        Task.Run(() =>
+        TaskRunner.Instance.TaskRunMain(() =>
         {
-            DontDestroy.MainThreadSyncContext.Post(_ =>
-            {
-                CreateMesh();
-                isShow = true;
-            }, null);
+            CreateMesh();
+            isShow = true;
         });
     }
-
+    static Vector2Int[] arr = new Vector2Int[]{
+        new(0, 1),
+        new(0, -1),
+        new(-1, 0),
+        new(1, 0),
+    };
     public void BrokenBlock(BlockCoord blockCoord)
     {
         if (IsVoxelInChunk(blockCoord))
         {
             blocks[blockCoord.x, blockCoord.y, blockCoord.z] = null;
+        }
+        foreach(var item in arr){
+            int x = blockCoord.x + item.x;
+            int z = blockCoord.z + item.y;
+            if(!IsVoxelInChunk(x, 0, z)){
+                ChunkEntity chunk = world.GetChunk(chunkCoord.x + item.x, chunkCoord.z + item.y);
+                if(chunk!= null && chunk.isShow){
+                    TaskRunner.Instance.RunTask(()=>{
+                        chunk.UpdateChunk();
+                    });
+                }
+            }
         }
     }
     public bool PlaceBlock(BlockCoord blockCoord, int blockId)

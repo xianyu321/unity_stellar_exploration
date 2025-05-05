@@ -1,9 +1,8 @@
 
 
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerEntity : MonoBehaviour
 {
@@ -144,9 +143,14 @@ public class PlayerEntity : MonoBehaviour
         {
             for (int j = nowChunkCoord.z - loadWidth; j <= nowChunkCoord.z + loadWidth; ++j)
             {
-                world.AddLoad(i, j);
+                // world.AddLoad(i, j);
+                addChunks.Enqueue(new(i, j));
             }
         }
+    }
+    public void Exit(){
+        world.SaveAll();
+        SceneManager.LoadScene("SampleScene");
     }
 
     private void UpdateChunkPos()
@@ -154,15 +158,44 @@ public class PlayerEntity : MonoBehaviour
         // return;
         nowChunkCoord = ChunkManager.ToChunkCoord(transform.position);
         int dis = ChunkManager.GetChunkDis(nowChunkCoord, preChunkCoord);
-        if (dis > 1)
+        UpdateChunks();
+        if (dis > 2)
         {
-            Task.Run(() =>
+            if (TaskRunner.Instance.GetActiveTaskCount() == 0)
             {
                 UpdateChunkTask();
-            });
+            }
         }
     }
-
+    private Queue<ChunkCoord> addChunks = new Queue<ChunkCoord>();
+    private Queue<ChunkCoord> delChunks = new Queue<ChunkCoord>();
+    int workTimes = 1;
+    void UpdateChunks()
+    {
+        if (addChunks.Count == 0 && delChunks.Count == 0)
+        {
+            return;
+        }
+        int time = workTimes;
+        while (time > 0)
+        {
+            --time;
+            if (addChunks.Count > 0)
+            {
+                ChunkCoord coord = addChunks.Dequeue();
+                world.AddLoad(coord.x, coord.z);
+            }
+        }
+        while (time > 0)
+        {
+            --time;
+            if (addChunks.Count > 0)
+            {
+                ChunkCoord coord = delChunks.Dequeue();
+                world.DelShow(coord.x, coord.z);
+            }
+        }
+    }
     private void UpdateChunkTask()
     {
         for (int i = nowChunkCoord.x - loadWidth; i <= nowChunkCoord.x + loadWidth; ++i)
@@ -176,7 +209,8 @@ public class PlayerEntity : MonoBehaviour
             {
                 if (flag || j < preChunkCoord.z - loadWidth || j > preChunkCoord.z + loadWidth)
                 {
-                    world.AddLoad(i, j);
+                    // world.AddLoad(i, j);
+                    addChunks.Enqueue(new(i, j));
                 }
             }
         }
@@ -191,7 +225,8 @@ public class PlayerEntity : MonoBehaviour
             {
                 if (flag || j < nowChunkCoord.z - delWidth || j > nowChunkCoord.z + delWidth)
                 {
-                    world.DelShow(i, j);
+                    // world.DelShow(i, j);
+                    delChunks.Enqueue(new(i, j));
                 }
             }
         }

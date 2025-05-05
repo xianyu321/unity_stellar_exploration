@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -69,10 +70,9 @@ public class WorldEntity
         ChunkEntity chunk = new ChunkEntity(new(x, z), this);
         GameObject chunks = GameObject.Find("Chunks");
         chunk.chunkObject.transform.SetParent(chunks.transform);
-        // ThreadPool.Instance.QueueTask(()=>{
-        // });
-        Task.Run(() =>
+        TaskRunner.Instance.RunTask(() =>
         {
+            chunk.InitData();
             worldGenerator.LoadChunk(x, z, chunk);
         });
     }
@@ -105,7 +105,7 @@ public class WorldEntity
     {
         return worldGenerator.GetBlock(pos.x, pos.y, pos.z);
     }
-
+    public HashSet<ChunkCoord> hasChange = new HashSet<ChunkCoord>();
     public void BrokenBlock(Vector3Int brokenBlockPos)
     {
         BlockEntity block = GetBlock(brokenBlockPos);
@@ -113,6 +113,7 @@ public class WorldEntity
         {
             block.chunk.BrokenBlock(block.blockCoordInChunk);
             block.chunk.UpdateChunk();
+            hasChange.Add(block.chunk.chunkCoord);
         }
     }
 
@@ -122,8 +123,19 @@ public class WorldEntity
         {
             ChunkEntity chunk = worldGenerator.GetChunkByBlockCoord(placedBlockPos);
             BlockCoord blockCoord = BlockCoord.ToBlockCoord(placedBlockPos);
+            hasChange.Add(chunk.chunkCoord);
             return chunk.PlaceBlock(blockCoord, blockId);
         }
         return false;
+    }
+
+    public void SaveAll(){
+        
+        lock(hasChange){
+            foreach(ChunkCoord item in hasChange){
+                worldGenerator.saveChunk(worldGenerator.GetChunk(item.x, item.z));
+            }
+            hasChange.Clear();
+        }
     }
 }

@@ -76,7 +76,7 @@ public class WorldGenerator
         chunk.isLoad = true;
     }
 
-    Vector2Int[] arr = new Vector2Int[]{
+    static Vector2Int[] arr = new Vector2Int[]{
         new(0, 0),
         new(0, 1),
         new(0, -1),
@@ -99,10 +99,8 @@ public class WorldGenerator
                 var temp = GetChunk(x, z);
                 if (temp != null)
                 {
-                    Debug.Log(x + " " + z);
                     temp.UpdateChunk();
                 }else{
-                    Debug.Log("no " + x + " " + z);
                 }
                 // Debug.Log(x + " " + z);
             }

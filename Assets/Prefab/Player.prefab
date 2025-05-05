@@ -2738,9 +2738,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7294397654538382462}
-        m_TargetAssemblyTypeName: GameEscMenu, Assembly-CSharp
-        m_MethodName: OnExitClick
+      - m_Target: {fileID: 5814761699547255138}
+        m_TargetAssemblyTypeName: PlayerEntity, Assembly-CSharp
+        m_MethodName: Exit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

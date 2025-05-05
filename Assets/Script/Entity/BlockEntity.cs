@@ -106,6 +106,12 @@ public class BlockCoord{
         z = _z;
     }
 
+    public BlockCoord(BlockCoord coord){
+        x = coord.x;
+        y = coord.y;
+        z = coord.z;
+    }
+
     public bool Equals(BlockCoord other)
     {
         if (other == null)

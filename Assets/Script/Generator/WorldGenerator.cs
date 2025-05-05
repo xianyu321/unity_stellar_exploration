@@ -1,12 +1,13 @@
 
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
 public class WorldGenerator
 {
-    public Dictionary<int, Dictionary<int, ChunkEntity>> chunks = new Dictionary<int, Dictionary<int, ChunkEntity>>();
-    public Dictionary<int, Dictionary<int, int>> flags = new Dictionary<int, Dictionary<int, int>>();
+    public ConcurrentDictionary<int, ConcurrentDictionary<int, ChunkEntity>> chunks = new ConcurrentDictionary<int, ConcurrentDictionary<int, ChunkEntity>>();
+    public ConcurrentDictionary<int, ConcurrentDictionary<int, int>> flags = new ConcurrentDictionary<int, ConcurrentDictionary<int, int>>();
     float offset = 0;
     float scale = 0.1f;
     WorldEntity world;
@@ -32,35 +33,31 @@ public class WorldGenerator
         return GetChunk(chunkCoord.x, chunkCoord.z);
     }
 
+    public ChunkEntity GetChunkByBlockCoord(int x, int z)
+    {
+        ChunkCoord chunkCoord = ChunkManager.ToChunkCoord(x, z);
+        return GetChunk(chunkCoord.x, chunkCoord.z);
+    }
     public ChunkEntity LoadChunk(int x, int z, ChunkEntity chunk)
     {
-        object lockObject = ThreadPool.Instance.GetLock(x, z);
-        lock(lockObject){
-            if (chunks.ContainsKey(x))
-            {
-                if (chunks[x].ContainsKey(z))
-                {
-                    return chunks[x][z];
-                }
-            }
-            else
-            {
-                chunks[x] = new Dictionary<int, ChunkEntity>(); // 初始化内层字典
-            }
-            LoadChunkFile(chunk);
-            UpdateMesh(chunk);
-            chunks[x][z] = chunk;
-            return chunk;
+        var innerDict = chunks.GetOrAdd(x, _ => new ConcurrentDictionary<int, ChunkEntity>());
+        if (innerDict.TryGetValue(z, out var existingChunk))
+        {
+            return existingChunk;
         }
+        LoadChunkFile(chunk);
+        innerDict.TryAdd(z, chunk);
+        UpdateMesh(chunk);
+        return chunk;
     }
 
     public ChunkEntity GetChunk(int x, int z)
     {
-        if (chunks.ContainsKey(x))
+        if (chunks.TryGetValue(x, out var existingChunk))
         {
-            if (chunks[x] != null && chunks[x].ContainsKey(z))
+            if (existingChunk.TryGetValue(z, out var chunk))
             {
-                return chunks[x][z];
+                return chunk;
             }
         }
         return null;
@@ -93,21 +90,21 @@ public class WorldGenerator
         {
             int x = chunk.chunkCoord.x + item.x;
             int z = chunk.chunkCoord.z + item.y;
-            object lockObject = ThreadPool.Instance.GetLock(x, z);
-            lock(lockObject){
-                if (!flags.ContainsKey(x))
+            var innerDict = flags.GetOrAdd(x, _ => new ConcurrentDictionary<int, int>());
+
+            int count = innerDict.AddOrUpdate(z, 1, (key, oldValue) => oldValue + 1);
+
+            if (count == 5)
+            {
+                var temp = GetChunk(x, z);
+                if (temp != null)
                 {
-                    flags[x] = new Dictionary<int, int>();
-                }
-                if(flags[x].ContainsKey(z)){
-                    ++flags[x][z];
+                    Debug.Log(x + " " + z);
+                    temp.UpdateChunk();
                 }else{
-                    flags[x][z] = 1;
+                    Debug.Log("no " + x + " " + z);
                 }
-                if (flags[x][z] == 5)
-                {
-                    chunk.UpdateChunk();
-                }
+                // Debug.Log(x + " " + z);
             }
 
         }
@@ -188,13 +185,22 @@ public class WorldGenerator
         return LoadChunkFromBinary(chunk, chunksPath);
     }
 
+    private readonly object fileLock = new object();
+
     public void SaveChunkToBinary(ChunkEntity chunk, string chunksPath)
     {
-        string chunkFileNmae = $"{chunk.chunkCoord.x},{chunk.chunkCoord.x}.dat";
+        string chunkFileNmae = $"{chunk.chunkCoord.x},{chunk.chunkCoord.z}.dat";
         string chunkFilePath = Path.Combine(chunksPath, chunkFileNmae);
-        BlockEntity[,,] blocks = chunk.blocks;
-        using (var writer = new BinaryWriter(File.Open(chunkFilePath, FileMode.Create)))
+        // lock(fileLock){
+        using (var writer = new BinaryWriter(
+            new FileStream(
+                chunkFilePath,
+                FileMode.Create,
+                FileAccess.Write,
+                FileShare.Read))) // 允许其他线程读取该文件
         {
+            BlockEntity[,,] blocks = chunk.blocks;
+
             chunk.ExecuteAll((block) =>
             {
                 if (block is not null)
@@ -206,23 +212,37 @@ public class WorldGenerator
                 }
             });
         }
+        // }
     }
 
     public bool LoadChunkFromBinary(ChunkEntity chunk, string chunksPath)
     {
-        string chunkFileNmae = $"{chunk.chunkCoord.x},{chunk.chunkCoord.x}.dat";
+        string chunkFileNmae = $"{chunk.chunkCoord.x},{chunk.chunkCoord.z}.dat";
         string chunkFilePath = Path.Combine(chunksPath, chunkFileNmae);
+        // lock(fileLock){
         if (File.Exists(chunkFilePath))
         {
-            using (var reader = new BinaryReader(File.Open(chunkFilePath, FileMode.Open)))
+            using (var stream = new FileStream(
+                chunkFilePath,
+                FileMode.Open,
+                FileAccess.Read,
+                FileShare.ReadWrite | FileShare.Delete)) // 允许多个读取者
             {
-                while (reader.BaseStream.Position < reader.BaseStream.Length)
+                using (var reader = new BinaryReader(stream))
                 {
-                    int x = reader.ReadInt32(); // 假设文件存储的是整数
-                    int y = reader.ReadInt32();
-                    int z = reader.ReadInt32();
-                    string value = reader.ReadString();
-                    chunk.blocks[x, y, z] = new BlockEntity(chunk, new(x, y, z), value);
+                    while (reader.BaseStream.Position < reader.BaseStream.Length)
+                    {
+                        int x = reader.ReadInt32();
+                        int y = reader.ReadInt32();
+                        int z = reader.ReadInt32();
+                        string value = reader.ReadString();
+
+                        // 如果 blocks[,] 是共享资源，需加锁保护
+                        lock (chunk) // 假设 chunk 本身是一个锁对象
+                        {
+                            chunk.blocks[x, y, z] = new BlockEntity(chunk, new(x, y, z), value);
+                        }
+                    }
                 }
             }
             return true;
@@ -231,6 +251,8 @@ public class WorldGenerator
         {
             return false;
         }
+        // }
+
     }
 }
 

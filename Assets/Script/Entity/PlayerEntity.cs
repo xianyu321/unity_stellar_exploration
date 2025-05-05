@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerEntity:MonoBehaviour
+public class PlayerEntity : MonoBehaviour
 {
     public CollisionEntity collision;
     public PlayerSetting setting = new();
@@ -51,10 +51,10 @@ public class PlayerEntity:MonoBehaviour
     protected int selfMask;
 
     public Animator anim;
-
+    public ChunkCoord nowChunkCoord;
+    public ChunkCoord preChunkCoord;
     private void Start()
     {
-        // cam = GameObject.Find("Main Camera").transform;
         movement = new PlayerMovement(this);
         toolBar.Initialize(this);
         world = WorldManager.Instance.GetOrCreateWorld(new());
@@ -62,18 +62,27 @@ public class PlayerEntity:MonoBehaviour
         EscUI.SetActive(isShowEscUI);
         BackpackUI.SetActive(isShowBackPack);
         selfMask = 1 << LayerMask.NameToLayer("SelfBody");
-        this.PlayerItem.transform.position = new Vector3(0, 60, 0);
+        PlayerItem.transform.position = new Vector3(0, 60, 0);
+        InitData();
+    }
+    public void InitData()
+    {
+        nowChunkCoord = preChunkCoord = ChunkManager.ToChunkCoord(transform.position);
+        InitChunks();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            if(isShowBackPack){
+            if (isShowBackPack)
+            {
                 BackpackUI.SetActive(false);
                 isShowBackPack = false;
                 inUI = false;
-            }else if(!inUI){
+            }
+            else if (!inUI)
+            {
                 BackpackUI.SetActive(true);
                 isShowBackPack = true;
                 inUI = true;
@@ -81,21 +90,28 @@ public class PlayerEntity:MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(isShowEscUI){
+            if (isShowEscUI)
+            {
                 EscUI.SetActive(false);
                 isShowEscUI = false;
                 inUI = false;
-            }else if(!inUI){
+            }
+            else if (!inUI)
+            {
                 EscUI.SetActive(true);
                 isShowEscUI = true;
                 inUI = true;
             }
         }
-        if(Input.GetKeyDown(KeyCode.F3)){
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
             isOpenF3 = !isOpenF3;
-            if(isOpenF3){
+            if (isOpenF3)
+            {
                 camLook.cullingMask |= selfMask;
-            }else{
+            }
+            else
+            {
                 camLook.cullingMask &= ~selfMask;
             }
         }
@@ -113,11 +129,69 @@ public class PlayerEntity:MonoBehaviour
 
     private void FixedUpdate()
     {
+        UpdateChunkPos();
         movement.FixedUpdate();
         UpdateAnim();
     }
+    //处理玩家移动区块改变后自动销毁和生成
+    int loadWidth = 2;
+    int delWidth = 2;
+
+    void InitChunks()
+    {
+        for (int i = nowChunkCoord.x - loadWidth; i <= nowChunkCoord.x + loadWidth; ++i)
+        {
+            for (int j = nowChunkCoord.z - loadWidth; j <= nowChunkCoord.z + loadWidth; ++j)
+            {
+                world.AddLoad(i, j);
+            }
+        }
+    }
+
+    private void UpdateChunkPos()
+    {
+        // return;
+        nowChunkCoord = ChunkManager.ToChunkCoord(transform.position);
+        int dis = ChunkManager.GetChunkDis(nowChunkCoord, preChunkCoord);
+        if (dis > 1)
+        {
+            if (ThreadPool.Instance.IsIdle)
+            {
+                for (int i = nowChunkCoord.x - loadWidth; i <= nowChunkCoord.x + loadWidth; ++i)
+                {
+                    if (i < preChunkCoord.x - loadWidth || i > preChunkCoord.x + loadWidth)
+                    {
+                        for (int j = nowChunkCoord.z - loadWidth; j <= nowChunkCoord.z + loadWidth; ++j)
+                        {
+                            if (j < preChunkCoord.z - loadWidth || j > preChunkCoord.z + loadWidth)
+                            {
+                                world.AddLoad(i, j);
+                            }
+                        }
+                    }
+                }
+
+                for (int i = preChunkCoord.x - delWidth; i <= preChunkCoord.x + delWidth; ++i)
+                {
+                    if (i < nowChunkCoord.x - delWidth || i > nowChunkCoord.x + delWidth)
+                    {
+                        for (int j = preChunkCoord.z - delWidth; j <= preChunkCoord.z + delWidth; ++j)
+                        {
+                            if (j < nowChunkCoord.z - delWidth || j > nowChunkCoord.z + delWidth)
+                            {
+                                world.DelShow(i, j);
+                            }
+                        }
+                    }
+                }
+                preChunkCoord = nowChunkCoord;
+                // world.LoadChunk()
+            }
+        }
+    }
     //处理视角移动
-    private void CalulateCam(){
+    private void CalulateCam()
+    {
         //处理水平视角
         transform.Rotate(Vector3.up * mouseHorizontal * setting.mouseSensitivity);
         //处理垂直视角
@@ -125,9 +199,12 @@ public class PlayerEntity:MonoBehaviour
         pitch = Mathf.Clamp(pitch, -90, 90);
         playLook.localRotation = Quaternion.Euler(pitch, 0f, 0f);
         PlayerItem.transform.Translate(velocity, Space.World);
-        if(isOpenF3){
+        if (isOpenF3)
+        {
             camLook.transform.position = playLook.position - playLook.forward * 5f;
-        }else{
+        }
+        else
+        {
             camLook.transform.position = playLook.position;
         }
     }
@@ -146,23 +223,31 @@ public class PlayerEntity:MonoBehaviour
             }
             if (Input.GetMouseButtonDown(1) && isTouchBlock)
             {
-                if(IsShiftDown){
-                    if(toolBar.NowHasItem() && world.PlacedBlock(placedBlockPos, toolBar.GetNowItemID())){
+                if (IsShiftDown)
+                {
+                    if (toolBar.NowHasItem() && world.PlacedBlock(placedBlockPos, toolBar.GetNowItemID()))
+                    {
                         toolBar.GetNowItem().TakeOne();
                     }
-                }else if(!world.GetBlock(brokenBlockPos).IsCanUse()){
-                    if(toolBar.NowHasItem() && world.PlacedBlock(placedBlockPos, toolBar.GetNowItemID())){
+                }
+                else if (!world.GetBlock(brokenBlockPos).IsCanUse())
+                {
+                    if (toolBar.NowHasItem() && world.PlacedBlock(placedBlockPos, toolBar.GetNowItemID()))
+                    {
                         toolBar.GetNowItem().TakeOne();
                     }
-                }else{
+                }
+                else
+                {
                     world.GetBlock(brokenBlockPos).UseBlock();
                 }
             }
         }
     }
 
-    private void UpdateAnim() {
-        
+    private void UpdateAnim()
+    {
+
     }
 
     Vector3Int placedBlockPos;
@@ -193,14 +278,16 @@ public class PlayerEntity:MonoBehaviour
         isTouchBlock = dfsFind;
     }
 
-    protected void dfsByRay(Vector3Int blockPos){
+    protected void dfsByRay(Vector3Int blockPos)
+    {
         //跳过已访问和在访问结束立马跳出
         if (visited.Contains(blockPos) || endDfs)
             return;
         //更新选中坐标
         placedBlockPos = brokenBlockPos;
         brokenBlockPos = blockPos;
-        if(world.GetBlock(blockPos).IsEntity()){
+        if (world.GetBlock(blockPos).IsEntity())
+        {
             endDfs = true;
             dfsFind = true;
             return;
@@ -210,13 +297,14 @@ public class PlayerEntity:MonoBehaviour
         foreach (Vector3Int direction in directions)
         {
             Vector3Int nextPos = blockPos + direction;
-            if(RayHit.IntersectRayWithVoxel(ray, nextPos,out hitInfo, contactDis)){
+            if (RayHit.IntersectRayWithVoxel(ray, nextPos, out hitInfo, contactDis))
+            {
                 dfsByRay(nextPos);
             }
         }
     }
 
-    
+
 
     void OnDrawGizmos()
     {

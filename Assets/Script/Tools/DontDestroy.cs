@@ -14,4 +14,14 @@ public class DontDestroy : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
+
+    // public void OnApplicationQuit()
+    // {
+    //     ThreadPool.Instance.Shutdown();
+    // }
+
+    // public void OnDestroy()
+    // {
+    //     ThreadPool.Instance.Shutdown();
+    // }
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 public sealed class ThreadPool
 {
     // 私有静态变量用于存储单例实例
-    private static readonly ThreadPool instance = new ThreadPool(1); // 设定最大线程数为4
+    private static readonly ThreadPool instance = new ThreadPool(2); // 设定最大线程数为4
     // 线程池相关成员
     private readonly int maxThreads;
     private int activeThreads;
@@ -23,7 +23,8 @@ public sealed class ThreadPool
     private ThreadPool(int maxThreads)
     {
 
-        for(int i = 0; i < 23; ++i){
+        for (int i = 0; i < 23; ++i)
+        {
             locks[i] = new object();
         }
         this.maxThreads = maxThreads;
@@ -63,7 +64,7 @@ public sealed class ThreadPool
             }
             catch (Exception e)
             {
-                Debug.Log($"Error executing task: {e.Message}");
+                // Debug.Log($"Error executing task: {e.Message}");
             }
             finally
             {
@@ -81,7 +82,8 @@ public sealed class ThreadPool
     // 判断线程池是否空闲
     public bool IsIdle => activeThreads == 0 && taskQueue.Count == 0;
 
-    public void MainThreadRun(SendOrPostCallback func){
+    public void MainThreadRun(SendOrPostCallback func)
+    {
         Task.Run(() =>
         {
             DontDestroy.MainThreadSyncContext.Post(func, null);

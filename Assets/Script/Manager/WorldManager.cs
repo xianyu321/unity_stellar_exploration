@@ -1,8 +1,4 @@
-
-
-
 using System.Collections.Generic;
-using UnityEngine;
 
 public class WorldManager
 {
@@ -22,7 +18,6 @@ public class WorldManager
     WorldManager(){
         worlds = new();
         BlockManager.Instance.Init();
-        // GetOrCreateWorld(new());
     }
 
     public WorldEntity GetOrCreateWorld(WorldGenerator worldGenerator){
@@ -43,7 +38,7 @@ public class WorldManager
         return worlds[worldName];
     }
 
-    string saveName;
+    string saveName = "testsave1";
 
     public void InitData(string _saveName){
         saveName = _saveName;

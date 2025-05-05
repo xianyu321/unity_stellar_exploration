@@ -37,7 +37,6 @@ public class ChunkEntity{
         biome = new Biome[chunkSize,chunkSize];
         chunkCoord = _chunkCoord;
         world = _world;
-
         Init();
         // UpdateChunk();
     }
@@ -102,7 +101,7 @@ public class ChunkEntity{
     }
     
     //清空贴图数据
-    void ClearMeshData()
+    public void ClearMeshData()
     {
         vertexIndex = 0;
         vertices.Clear();
@@ -116,7 +115,6 @@ public class ChunkEntity{
     //创建mesh并装载数据
     public void CreateMesh()
     {
-        // Mesh mesh = new Mesh();
         mesh.Clear();
         mesh.vertices = vertices.ToArray();
         // mesh.triangles = triangles.ToArray();
@@ -247,7 +245,11 @@ public class ChunkEntity{
             }
         }
     }
-    
+
+    public void ClearMesh()
+    {
+        
+    }
 }
 
 //区块坐标对象

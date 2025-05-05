@@ -1,5 +1,9 @@
 
 
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class WorldEntity
@@ -10,7 +14,7 @@ public class WorldEntity
     {
         worldGenerator = _worldGenerator;
         worldGenerator.BindWorld(this);
-        TextInit();
+        // TextInit();
     }
 
     public void TextInit()
@@ -27,20 +31,74 @@ public class WorldEntity
         }
     }
 
-    public void LoadChunk(int x, int z)
+    public Dictionary<int, Dictionary<int, int>> loads = new Dictionary<int, Dictionary<int, int>>();
+    public Dictionary<int, Dictionary<int, int>> shows = new Dictionary<int, Dictionary<int, int>>();
+    public void AddLoad(int x, int z)
+    {
+        if (!loads.ContainsKey(x))
+        {
+            loads[x] = new Dictionary<int, int>();
+            shows[x] = new Dictionary<int, int>();
+        }
+        if (!loads[x].ContainsKey(z))
+        {
+            loads[x][z] = 1;
+            shows[x][z] = 0;
+            LoadChunk(x, z);
+        }
+        else
+        {
+            if (shows[x][z] == 0)
+            {
+                worldGenerator.GetChunk(x, z).UpdateChunk();
+            }
+        }
+        ++shows[x][z];
+    }
+    public void DelShow(int x, int z)
+    {
+        --shows[x][z];
+        if (shows[x][z] == 0)
+        {
+            GetChunk(x, z).ClearMeshData();
+        }
+    }
+
+    public async Task LoadChunk(int x, int z)
     {
         ChunkEntity chunk = new ChunkEntity(new(x, z), this);
         GameObject chunks = GameObject.Find("Chunks");
         chunk.chunkObject.transform.SetParent(chunks.transform);
-        ThreadPool.Instance.QueueTask(() =>
+        // Task.Run(() =>
+        // {
+        //     worldGenerator.LoadChunk(x, z, chunk);
+        // });
+        try
         {
-            worldGenerator.LoadChunk(x, z, chunk);
-        });
+            var task = Task.Run(() =>
+            {
+                worldGenerator.LoadChunk(x, z, chunk);
+            });
+            await task;
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Caught an exception: {ex.Message}");
+        }
+        // ThreadPool.Instance.QueueTask(() =>
+        // {
+        //     worldGenerator.LoadChunk(x, z, chunk);
+        // });
     }
 
     public ChunkEntity GetChunk(int x, int z)
     {
         return worldGenerator.GetChunk(x, z);
+    }
+
+    public ChunkEntity GetChunkByBlockCoord(int x, int z)
+    {
+        return worldGenerator.GetChunkByBlockCoord(x, z);
     }
     public BlockEntity GetBlock(int x, int y, int z)
     {

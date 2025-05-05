@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class ChunkEntity{
+public class ChunkEntity
+{
     public static readonly int chunkSize = 16;
     public static readonly int chunkHight = 128;
     public ChunkCoord chunkCoord;
@@ -31,10 +32,11 @@ public class ChunkEntity{
     public bool isLoad = false;
     public bool isShow = false;
     List<Color> colors = new List<Color>();
-    
-    public ChunkEntity(ChunkCoord _chunkCoord, WorldEntity _world){
-        blocks = new BlockEntity[chunkSize,chunkHight,chunkSize];
-        biome = new Biome[chunkSize,chunkSize];
+
+    public ChunkEntity(ChunkCoord _chunkCoord, WorldEntity _world)
+    {
+        blocks = new BlockEntity[chunkSize, chunkHight, chunkSize];
+        biome = new Biome[chunkSize, chunkSize];
         chunkCoord = _chunkCoord;
         world = _world;
         Init();
@@ -75,22 +77,29 @@ public class ChunkEntity{
                 }
             }
         }
-        ThreadPool.Instance.MainThreadRun(
-            _=>{
+        Task.Run(() =>
+        {
+            DontDestroy.MainThreadSyncContext.Post(_ =>
+            {
                 CreateMesh();
                 isShow = true;
-            }
-        );
+            }, null);
+        });
     }
 
-    public void BrokenBlock(BlockCoord blockCoord){
-        if(IsVoxelInChunk(blockCoord)){
+    public void BrokenBlock(BlockCoord blockCoord)
+    {
+        if (IsVoxelInChunk(blockCoord))
+        {
             blocks[blockCoord.x, blockCoord.y, blockCoord.z] = null;
         }
     }
-    public bool PlaceBlock(BlockCoord blockCoord, int blockId){
-        if(IsVoxelInChunk(blockCoord)){
-            if(GetBlock(blockCoord.x, blockCoord.y, blockCoord.z).IsEntity()){
+    public bool PlaceBlock(BlockCoord blockCoord, int blockId)
+    {
+        if (IsVoxelInChunk(blockCoord))
+        {
+            if (GetBlock(blockCoord.x, blockCoord.y, blockCoord.z).IsEntity())
+            {
                 return false;
             }
             blocks[blockCoord.x, blockCoord.y, blockCoord.z] = new(this, blockCoord, blockId);
@@ -99,7 +108,7 @@ public class ChunkEntity{
         }
         return false;
     }
-    
+
     //清空贴图数据
     public void ClearMeshData()
     {
@@ -134,7 +143,8 @@ public class ChunkEntity{
         int y = Mathf.FloorToInt(pos.y);
         int z = Mathf.FloorToInt(pos.z);
         int blockID = GetBlockID(x, y, z);
-        if(blockID < 0){
+        if (blockID < 0)
+        {
             return;
         }
         for (int p = 0; p < 6; p++)
@@ -143,22 +153,26 @@ public class ChunkEntity{
             {
                 int texIndex = BlockManager.Instance.Blocks[blockID].faces.GetTextureID(p);
                 //  && world.blockTypes[neighbor.id].renderNeighborFaces
-                for(int i = 0; i < 4; ++i){
+                for (int i = 0; i < 4; ++i)
+                {
                     vertices.Add(pos + VoxelData.voxelVerts[VoxelData.voxelTris[p, i]]);
                     normals.Add(VoxelData.faceChecks[p]);
                 }
                 AddTexture(texIndex);
                 CWTriangle(ref triangles);
-                vertexIndex += 4;   
+                vertexIndex += 4;
             }
         }
     }
 
     //顺时针三角形
-    void CWTriangle(ref List<int> list){
-        for(int i = 0 ; i < 2; ++i){
-            for(int j = 0; j < 3; ++j){
-                list.Add(vertexIndex + VoxelData.triangleHash[i,j]);
+    void CWTriangle(ref List<int> list)
+    {
+        for (int i = 0; i < 2; ++i)
+        {
+            for (int j = 0; j < 3; ++j)
+            {
+                list.Add(vertexIndex + VoxelData.triangleHash[i, j]);
             }
         }
     }
@@ -169,7 +183,7 @@ public class ChunkEntity{
         int y = Mathf.FloorToInt(pos.y);
         int z = Mathf.FloorToInt(pos.z);
         if (!IsVoxelInChunk(x, y, z))
-            return !world.IsBlock(x + chunkCoord.x * chunkSize, y,z + chunkCoord.z * chunkSize);
+            return !world.IsBlock(x + chunkCoord.x * chunkSize, y, z + chunkCoord.z * chunkSize);
         return blocks[x, y, z] is null;
     }
     //是否在本区块内
@@ -205,12 +219,14 @@ public class ChunkEntity{
     }
 
     //y是高度
-    public BlockEntity GetBlock(int x, int y, int z){
+    public BlockEntity GetBlock(int x, int y, int z)
+    {
         if (x >= 0 && x < blocks.GetLength(0) &&
             y >= 0 && y < blocks.GetLength(1) &&
             z >= 0 && z < blocks.GetLength(2))
         {
-            if(blocks[x, y, z] is null){
+            if (blocks[x, y, z] is null)
+            {
                 return new();
             }
             return blocks[x, y, z];
@@ -218,9 +234,11 @@ public class ChunkEntity{
         return new();
     }
 
-    int GetBlockID(int x, int y, int z){
-        BlockEntity block = GetBlock(x, y , z);
-        if(!block.IsEntity()){
+    int GetBlockID(int x, int y, int z)
+    {
+        BlockEntity block = GetBlock(x, y, z);
+        if (!block.IsEntity())
+        {
             return -1;
         }
         return block.blockID;
@@ -237,10 +255,13 @@ public class ChunkEntity{
 
     public void ExecuteAll(Action<BlockEntity> action)
     {
-        for(int x = 0; x < chunkSize; ++x){
-            for(int y = 0; y < chunkHight; ++y){
-                for(int z = 0; z < chunkSize; ++z){
-                    action(blocks[x,y,z]);
+        for (int x = 0; x < chunkSize; ++x)
+        {
+            for (int y = 0; y < chunkHight; ++y)
+            {
+                for (int z = 0; z < chunkSize; ++z)
+                {
+                    action(blocks[x, y, z]);
                 }
             }
         }
@@ -248,7 +269,7 @@ public class ChunkEntity{
 
     public void ClearMesh()
     {
-        
+
     }
 }
 

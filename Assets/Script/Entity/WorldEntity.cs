@@ -64,31 +64,17 @@ public class WorldEntity
         }
     }
 
-    public async Task LoadChunk(int x, int z)
+    public void LoadChunk(int x, int z)
     {
         ChunkEntity chunk = new ChunkEntity(new(x, z), this);
         GameObject chunks = GameObject.Find("Chunks");
         chunk.chunkObject.transform.SetParent(chunks.transform);
-        // Task.Run(() =>
-        // {
-        //     worldGenerator.LoadChunk(x, z, chunk);
+        // ThreadPool.Instance.QueueTask(()=>{
         // });
-        try
+        Task.Run(() =>
         {
-            var task = Task.Run(() =>
-            {
-                worldGenerator.LoadChunk(x, z, chunk);
-            });
-            await task;
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"Caught an exception: {ex.Message}");
-        }
-        // ThreadPool.Instance.QueueTask(() =>
-        // {
-        //     worldGenerator.LoadChunk(x, z, chunk);
-        // });
+            worldGenerator.LoadChunk(x, z, chunk);
+        });
     }
 
     public ChunkEntity GetChunk(int x, int z)

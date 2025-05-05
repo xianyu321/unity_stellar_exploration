@@ -1,6 +1,7 @@
 
 
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 
@@ -134,8 +135,8 @@ public class PlayerEntity : MonoBehaviour
         UpdateAnim();
     }
     //处理玩家移动区块改变后自动销毁和生成
-    int loadWidth = 2;
-    int delWidth = 2;
+    int loadWidth = 5;
+    int delWidth = 5;
 
     void InitChunks()
     {
@@ -155,39 +156,46 @@ public class PlayerEntity : MonoBehaviour
         int dis = ChunkManager.GetChunkDis(nowChunkCoord, preChunkCoord);
         if (dis > 1)
         {
-            if (ThreadPool.Instance.IsIdle)
+            Task.Run(() =>
             {
-                for (int i = nowChunkCoord.x - loadWidth; i <= nowChunkCoord.x + loadWidth; ++i)
-                {
-                    if (i < preChunkCoord.x - loadWidth || i > preChunkCoord.x + loadWidth)
-                    {
-                        for (int j = nowChunkCoord.z - loadWidth; j <= nowChunkCoord.z + loadWidth; ++j)
-                        {
-                            if (j < preChunkCoord.z - loadWidth || j > preChunkCoord.z + loadWidth)
-                            {
-                                world.AddLoad(i, j);
-                            }
-                        }
-                    }
-                }
+                UpdateChunkTask();
+            });
+        }
+    }
 
-                for (int i = preChunkCoord.x - delWidth; i <= preChunkCoord.x + delWidth; ++i)
+    private void UpdateChunkTask()
+    {
+        for (int i = nowChunkCoord.x - loadWidth; i <= nowChunkCoord.x + loadWidth; ++i)
+        {
+            bool flag = false;
+            if (i < preChunkCoord.x - loadWidth || i > preChunkCoord.x + loadWidth)
+            {
+                flag = true;
+            }
+            for (int j = nowChunkCoord.z - loadWidth; j <= nowChunkCoord.z + loadWidth; ++j)
+            {
+                if (flag || j < preChunkCoord.z - loadWidth || j > preChunkCoord.z + loadWidth)
                 {
-                    if (i < nowChunkCoord.x - delWidth || i > nowChunkCoord.x + delWidth)
-                    {
-                        for (int j = preChunkCoord.z - delWidth; j <= preChunkCoord.z + delWidth; ++j)
-                        {
-                            if (j < nowChunkCoord.z - delWidth || j > nowChunkCoord.z + delWidth)
-                            {
-                                world.DelShow(i, j);
-                            }
-                        }
-                    }
+                    world.AddLoad(i, j);
                 }
-                preChunkCoord = nowChunkCoord;
-                // world.LoadChunk()
             }
         }
+        for (int i = preChunkCoord.x - delWidth; i <= preChunkCoord.x + delWidth; ++i)
+        {
+            bool flag = false;
+            if (i < nowChunkCoord.x - delWidth || i > nowChunkCoord.x + delWidth)
+            {
+                flag = true;
+            }
+            for (int j = preChunkCoord.z - delWidth; j <= preChunkCoord.z + delWidth; ++j)
+            {
+                if (flag || j < nowChunkCoord.z - delWidth || j > nowChunkCoord.z + delWidth)
+                {
+                    world.DelShow(i, j);
+                }
+            }
+        }
+        preChunkCoord = nowChunkCoord;
     }
     //处理视角移动
     private void CalulateCam()

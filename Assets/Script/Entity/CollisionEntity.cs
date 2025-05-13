@@ -12,6 +12,7 @@ public class CollisionEntity : MonoBehaviour
         }
     }
     public Vector3 size = new(0.5f, 1.8f, 0.5f);
+    public Vector3 absorbSize = new(1, 2, 1);//吸收范围
     public float TOP
     {
         get

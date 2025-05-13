@@ -69,12 +69,6 @@ public class BlockManager
 }
 
 [System.Serializable]
-public class BlockDataWrapper
-{
-    public BlockJsonData[] blocks;
-}
-
-[System.Serializable]
 public class BlockFaceData
 {
     public int left;

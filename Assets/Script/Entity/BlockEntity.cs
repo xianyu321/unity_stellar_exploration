@@ -1,7 +1,6 @@
 
 
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BlockEntity{
@@ -87,6 +86,28 @@ public class BlockEntity{
         if(!IsCanUse()){
             return;
         }
+    }
+    int brokenNeedTime = 200;
+    int brokenTime = 0;
+    int preTime = 0;
+
+    public bool OnBroken(int itemID)
+    {
+        int nowTime = (int)DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+        int dTime = Mathf.Abs(nowTime - preTime);
+        preTime = nowTime;
+        if(dTime > 10000){
+            brokenTime = 0;
+            return false;
+        }
+        if(dTime > 50){
+            brokenTime += 50;
+        }
+        if(brokenTime >= brokenNeedTime){
+            DropItemManager.Instance.GeneratorItem(blockID, new(worldCoord.x + UnityEngine.Random.Range(0, 0.7f), worldCoord.y + UnityEngine.Random.Range(0, 0.7f), worldCoord.z + UnityEngine.Random.Range(0, 0.7f)), chunk.world);
+            return true;
+        }
+        return false;
     }
 }
 

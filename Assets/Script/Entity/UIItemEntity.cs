@@ -7,7 +7,16 @@ public class UIItemEntity : MonoBehaviour
     public Image icon;
     public TMP_Text numText;
     ItemData item;
+    public bool hasItem{
+        get{
+            return item!=null;
+        }
+    }
 
+    public void OnEnable()
+    {
+        UpdateUI();
+    }
     public UIItemEntity(){
     }
     public UIItemEntity(ItemData _item){
@@ -17,6 +26,10 @@ public class UIItemEntity : MonoBehaviour
 
     public ItemData GetItem(){
         return item;
+    }
+
+    public int GetItemID(){
+        return item.id;
     }
 
     public void InitData(ItemData inData){
@@ -82,7 +95,10 @@ public class UIItemEntity : MonoBehaviour
             numText.text = item.num.ToString();
         }   
     }
-
+    public void ClearItem(){
+        item = null;
+        UpdateUI();
+    }
 
 }
 
@@ -90,6 +106,7 @@ public class ItemData{
     public int id;
     public int num;
     public int maxNum = 999;
+    public bool isCreative = false;//是创造物品栏
     public ItemData(int _id, int _num){
         id = _id;
         num = _num;

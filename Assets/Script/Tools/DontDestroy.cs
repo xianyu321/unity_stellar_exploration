@@ -15,6 +15,8 @@ public class DontDestroy : MonoBehaviour
         }
     }
 
+
+
     // public void OnApplicationQuit()
     // {
     //     ThreadPool.Instance.Shutdown();

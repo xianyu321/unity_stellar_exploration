@@ -12,7 +12,7 @@ public class ChunkEntity
     public ChunkCoord chunkCoord;
     public BlockEntity[,,] blocks;
     public Biome[,] biome;
-    WorldEntity world;//区块所在世界
+    public WorldEntity world;//区块所在世界
     public GameObject chunkObject;//区块对象 
     MeshRenderer meshRenderer;//mesh渲染器
     MeshFilter meshFilter;//mesh过滤器
@@ -21,13 +21,10 @@ public class ChunkEntity
     List<int> triangles;//三角形面集合
     List<Vector2> uvs;//贴图数组
     List<Vector3> normals;
-    List<int> transparentTriangles;//可透视贴图
-    Material[] materials = new Material[2]; //材质数组
+    Material material; //材质
     //区块坐标
-    public Vector3 position;
     public bool isLoad = false;
     public bool isShow = false;
-    List<Color> colors = new List<Color>();
 
     public ChunkEntity(ChunkCoord _chunkCoord, WorldEntity _world)
     {
@@ -44,7 +41,6 @@ public class ChunkEntity
         triangles = new List<int>();
         uvs = new List<Vector2>();
         normals = new List<Vector3>();
-        transparentTriangles = new List<int>();
     }
 
     public void Init()
@@ -52,18 +48,11 @@ public class ChunkEntity
         //更新区块对象坐标
         chunkObject.transform.position = new Vector3(chunkCoord.x * VoxelData.chunkWidth, 0f, chunkCoord.z * VoxelData.chunkWidth);
         chunkObject.name = chunkCoord.x + ", " + chunkCoord.z;
-        //把区块对象放入世界的子组件中
-        // chunkObject.transform.SetParent(world.transform);
         //为区块对象添加mesh
         meshRenderer = chunkObject.AddComponent<MeshRenderer>();
         meshFilter = chunkObject.AddComponent<MeshFilter>();
-        //为mesh加载材质
-        materials[0] = TextureManager.Instance.blockMaterial;
-        // materials[0] =world.material;
-        materials[1] = materials[0];
-        meshRenderer.materials = materials;
-
-        position = chunkObject.transform.position;
+        material = TextureManager.Instance.blockMaterial;
+        meshRenderer.material = material;
     }
     //更新整个区块
     public void UpdateChunk()
@@ -95,20 +84,29 @@ public class ChunkEntity
     {
         if (IsVoxelInChunk(blockCoord))
         {
-            blocks[blockCoord.x, blockCoord.y, blockCoord.z] = null;
-        }
-        foreach(var item in arr){
-            int x = blockCoord.x + item.x;
-            int z = blockCoord.z + item.y;
-            if(!IsVoxelInChunk(x, 0, z)){
-                ChunkEntity chunk = world.GetChunk(chunkCoord.x + item.x, chunkCoord.z + item.y);
-                if(chunk!= null && chunk.isShow){
-                    TaskRunner.Instance.RunTask(()=>{
-                        chunk.UpdateChunk();
-                    });
+            BlockEntity block = GetBlock(blockCoord.x, blockCoord.y, blockCoord.z);
+            if (block.IsEntity() && block.OnBroken(0))
+            {
+                blocks[blockCoord.x, blockCoord.y, blockCoord.z] = null;
+                foreach (var item in arr)
+                {
+                    int x = blockCoord.x + item.x;
+                    int z = blockCoord.z + item.y;
+                    if (!IsVoxelInChunk(x, 0, z))
+                    {
+                        ChunkEntity chunk = world.GetChunk(chunkCoord.x + item.x, chunkCoord.z + item.y);
+                        if (chunk != null && chunk.isShow)
+                        {
+                            TaskRunner.Instance.RunTask(() =>
+                            {
+                                chunk.UpdateChunk();
+                            });
+                        }
+                    }
                 }
             }
         }
+
     }
     public bool PlaceBlock(BlockCoord blockCoord, int blockId)
     {
@@ -131,9 +129,7 @@ public class ChunkEntity
         vertexIndex = 0;
         vertices.Clear();
         triangles.Clear();
-        transparentTriangles.Clear();
         uvs.Clear();
-        colors.Clear();
         normals.Clear();
     }
     Mesh mesh = new Mesh();
@@ -142,12 +138,9 @@ public class ChunkEntity
     {
         mesh.Clear();
         mesh.vertices = vertices.ToArray();
-        // mesh.triangles = triangles.ToArray();
+        mesh.triangles = triangles.ToArray();
         mesh.subMeshCount = 2;
-        mesh.SetTriangles(triangles.ToArray(), 0);
-        mesh.SetTriangles(transparentTriangles.ToArray(), 1);
         mesh.uv = uvs.ToArray();
-        mesh.colors = colors.ToArray();
         mesh.normals = normals.ToArray();
         meshFilter.mesh = mesh;
     }

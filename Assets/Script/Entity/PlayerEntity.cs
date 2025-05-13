@@ -1,6 +1,7 @@
 
 
 using System.Collections.Generic;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -53,6 +54,13 @@ public class PlayerEntity : MonoBehaviour
     public Animator anim;
     public ChunkCoord nowChunkCoord;
     public ChunkCoord preChunkCoord;
+    public List<ItemData> items = new List<ItemData>();
+    void Awake()
+    {
+        for(int i = 0; i < 36; ++i){
+            items.Add(new(0,i + 300));
+        }
+    }
     private void Start()
     {
         movement = new PlayerMovement(this);
@@ -132,10 +140,40 @@ public class PlayerEntity : MonoBehaviour
         UpdateChunkPos();
         movement.FixedUpdate();
         UpdateAnim();
+        ChunkHasDrop();
+    }
+    void ChunkHasDrop(){
+        DropItemEntity drop = DropItemManager.Instance.GetDropByPlayer(collision.pos + collision.size / 2, collision.absorbSize);
+        if(drop!=null){
+            ItemData data = drop.data;
+            foreach(ItemData item in items){
+                if(item != null && item.id == data.id && item.num < item.maxNum){
+                    item.num += data.num;
+                    data.num = 0;
+                    if(item.num > item.maxNum){
+                        data.num = item.num - item.maxNum;
+                        item.num = item.maxNum;
+                    }
+                    if(data.num == 0){
+                        DropItemManager.Instance.RemoveListItem(drop);
+                        break;
+                    }
+                }
+            }
+            if(data.num > 0){
+                for(int i = 0; i < items.Count; ++i){
+                    if(items[i] == null){
+                        DropItemManager.Instance.RemoveListItem(drop);
+                        items[i] = data;
+                        break;
+                    }
+                }
+            }
+        }
     }
     //处理玩家移动区块改变后自动销毁和生成
-    int loadWidth = 5;
-    int delWidth = 5;
+    int loadWidth = 3;
+    int delWidth = 3;
 
     void InitChunks()
     {

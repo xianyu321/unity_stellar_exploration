@@ -4,7 +4,6 @@ using System.Collections.Generic;
 public static class EventManager
 {
     private static Dictionary<string, Action<object>> eventDictionaryWithParams = new Dictionary<string, Action<object>>();
-    private static Dictionary<string, Action> eventDictionaryWithoutParams = new Dictionary<string, Action>();
 
     // 注册监听器（带参数）
     public static void On(string eventName, Action<object> listener)
@@ -35,6 +34,7 @@ public static class EventManager
         }
     }
 
+    private static Dictionary<string, Action> eventDictionaryWithoutParams = new Dictionary<string, Action>();
     // 注册监听器（不带参数）
     public static void On(string eventName, Action listener)
     {

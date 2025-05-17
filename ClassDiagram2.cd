@@ -1,0 +1,897 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CameraController" Collapsed="true">
+    <Position X="18.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAgABAACAAAAAAAAAQIAgAAAAABAAAAAQAgAAACAA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\Demo Elements\Code\CameraController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Gravity" Collapsed="true">
+    <Position X="21.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\SuperCharacterController\Code\Gravity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerCamera" Collapsed="true">
+    <Position X="25.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAABCAAAAEAIAAAJAAAAAIAABBAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\SuperCharacterController\Code\PlayerCamera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerInputController" Collapsed="true">
+    <Position X="9.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACCAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\SuperCharacterController\Code\PlayerInputController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerMachine" Collapsed="true">
+    <Position X="3" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAUAMAAACQIBgEiQAIAAACAAAAAABEAABQACAACIhA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\SuperCharacterController\Code\PlayerMachine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerMachineDebug" Collapsed="true">
+    <Position X="11.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAQCAAAAAAEA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\SuperCharacterController\Code\PlayerMachineDebug.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SimpleStateMachine" Collapsed="true">
+    <Position X="14.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEwAgAACAoAAAgIAoAACIAAAAAAAAAAEAAWAAAAgAAA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\SuperCharacterController\Code\SimpleStateMachine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BruteForceMesh" Collapsed="true">
+    <Position X="13" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAABAAAAACAAACAAAAAQAAARAAAAAAACAAAAAEA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\BruteForceMesh.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BSPTree" Collapsed="true">
+    <Position X="14.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAABEAAJACAAACAAgSgAQABQAAERAAAQAAACAAAAAEA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\BSPTree.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperCharacterController" Collapsed="true">
+    <Position X="20" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>g24UKQqAioECgAQJBkBBAkRIAEEKIBAIgAkAAhCCEEA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\SuperCharacterController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CollisionSphere" Collapsed="true">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\SuperCharacterController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperCollider" Collapsed="true">
+    <Position X="21.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\SuperCollider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperCollisionType" Collapsed="true">
+    <Position X="23.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\SuperCollisionType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperMath" Collapsed="true">
+    <Position X="25.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAAAAEAAEAAAAAAAAABAAEAAA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\SuperMath.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SuperStateMachine" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEgAgAACAIAAAgAAIAACAAAAAABAAAAEAAQAAAAgAAA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\SuperStateMachine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DebugDraw" Collapsed="true">
+    <Position X="18.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAIAAAAAAAAACEAAgAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\DebugDraw.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Math3d" Collapsed="true">
+    <Position X="11.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAEYAKQAhEIQAAkhAAEAAAAQARIQAJMQCAAAQAwA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Math3d.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Biome">
+    <Position X="16.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAogAQCAAAAAACAAIABgAYEAAwAEAAAAABAQBAA=</HashCode>
+      <FileName>Assets\Script\Biomes\Biome.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ForestBiome" Collapsed="true">
+    <Position X="14.5" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAABgAIAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Biomes\ForestBiome.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlockEntity">
+    <Position X="26" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAACAAAgBAAAAAAAAAAEAAAAAAEUMUAAAABAgCAAA=</HashCode>
+      <FileName>Assets\Script\Entity\BlockEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlockCoord" Collapsed="true">
+    <Position X="21.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEgAAAAAAAAAAAAAAAAABggQkAAAA=</HashCode>
+      <FileName>Assets\Script\Entity\BlockEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChunkEntity">
+    <Position X="24.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAMgEAAEAAAAABgEAEAACQEAwIAxEAEAAARCBFFAhgQ=</HashCode>
+      <FileName>Assets\Script\Entity\ChunkEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChunkCoord" Collapsed="true">
+    <Position X="21.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAABAAQAAAAA=</HashCode>
+      <FileName>Assets\Script\Entity\ChunkEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CollisionEntity" Collapsed="true">
+    <Position X="5.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAggAIAAAIAJAAAIAACAAAAEAAAAAACEAAgCA=</HashCode>
+      <FileName>Assets\Script\Entity\CollisionEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DropItemEntity" Collapsed="true">
+    <Position X="6" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAkgEAgBAiAAABBAAAAACQAAAAAREEAAAERSAAFAAgA=</HashCode>
+      <FileName>Assets\Script\Entity\DropItemEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerEntity" Collapsed="true">
+    <Position X="5.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QURMmAIMIiUEAAMBAEgACKgIAKEEBMAA4QQEFBlIgkE=</HashCode>
+      <FileName>Assets\Script\Entity\PlayerEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UIItemEntity" Collapsed="true">
+    <Position X="20" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIQAQACAAAAAEAAAFQAAAAAIAAAAAACAQCAAAAACAA=</HashCode>
+      <FileName>Assets\Script\Entity\UIItemEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ItemData" Collapsed="true">
+    <Position X="7.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAIAAAAAAAAAAAAAAAAAACAAAAgA=</HashCode>
+      <FileName>Assets\Script\Entity\UIItemEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorldEntity">
+    <Position X="22.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQkAAAAAgAJCEIAAAAAAAAAQUAAIAAgAAAAAAQ=</HashCode>
+      <FileName>Assets\Script\Entity\WorldEntity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileLoader" Collapsed="true">
+    <Position X="16.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEABAAAAAAAAAEQAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Assets\Script\FileLoader\FileLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PathLoader" Collapsed="true">
+    <Position X="23.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AiAIACAAAAAAAAAACAAAAgoQABIAgAAAAAAIgAAAAAA=</HashCode>
+      <FileName>Assets\Script\FileLoader\PathLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainWorldGenerator" Collapsed="true">
+    <Position X="19.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Generator\MainWorldGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorldGenerator">
+    <Position X="18" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAEQQAAABAAABAAEAAEAACgBACAUAAICIgACAAABQ=</HashCode>
+      <FileName>Assets\Script\Generator\WorldGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlockManager" Collapsed="true">
+    <Position X="9.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAQAAAAAAAAAAAAAAIAAAQAACAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Manager\BlockManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlockFaceData" Collapsed="true">
+    <Position X="4" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAABACAAAQAAAAAAAAAAAIAAAAAAAAAgAAgAA=</HashCode>
+      <FileName>Assets\Script\Manager\BlockManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlockJsonData" Collapsed="true">
+    <Position X="7.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAEAAAAAAAAAAAEAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Manager\BlockManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChunkManager" Collapsed="true">
+    <Position X="25.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Manager\ChunkManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConfigManager" Collapsed="true">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAEAAAAAAAAAQAAAADAAIAAAAAAEAAAQAQAAAAAAgA=</HashCode>
+      <FileName>Assets\Script\Manager\ConfigManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DropManager" Collapsed="true">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAgAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Script\Manager\DropManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DropItemManager" Collapsed="true">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EBAEABAQAAAAAAAAAAAAAAAAAAAAAAAAQAACAAAgAAA=</HashCode>
+      <FileName>Assets\Script\Manager\DropManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EventManager" Collapsed="true">
+    <Position X="14.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAIAAAAAAAAAAAEgAAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Assets\Script\Manager\EventManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager" Collapsed="true">
+    <Position X="20" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Manager\Gamemanager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ResourceManager" Collapsed="true">
+    <Position X="20" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Manager\ResourceManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SaveManager" Collapsed="true">
+    <Position X="23.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAABAAEAAABAACAAAIAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Manager\SaveManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TextureManager" Collapsed="true">
+    <Position X="16.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAEAAAAAAAAAQAAAAEAIAAAAQIAAAACQAQAACAAAAA=</HashCode>
+      <FileName>Assets\Script\Manager\TextureManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorldManager">
+    <Position X="27" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEEAAAAAAAAAAAAEAAAAAAAAABAAAAQAIBgAAAAAA=</HashCode>
+      <FileName>Assets\Script\Manager\WorldManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerMovement" Collapsed="true">
+    <Position X="13" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>oAQgkkgEAgEDQAAAAgASCAAAAiAGCEANA4QgABAAQBA=</HashCode>
+      <FileName>Assets\Script\Ment\PlayerMovement\PlayerMovement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AppConfig" Collapsed="true">
+    <Position X="0.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAAEAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Persistence\AppConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlaySave" Collapsed="true">
+    <Position X="16.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAgAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Persistence\PlayerSave.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SaveConfig" Collapsed="true">
+    <Position X="2.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAQAAAAAAAAAAAAQAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Persistence\SaveConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CreativeInventiory" Collapsed="true">
+    <Position X="13" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAQAAAAAAAAAAQAAQAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Player\CreativeInventiory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CreativePlayer" Collapsed="true">
+    <Position X="14.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAIAAAIAAAAAAQAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Assets\Script\Player\CreativePlayer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DebugScreen" Collapsed="true">
+    <Position X="20" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEQAAACAAAAAAAAAAAAAAAAAAIAAIAAAAAAAABAA=</HashCode>
+      <FileName>Assets\Script\Player\DebugScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DragAndDropHandler" Collapsed="true">
+    <Position X="23.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQAAQAAACCAAgAAAAAAAAAAAAAgAAABAAAQAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Player\DragAndDropHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerSetting" Collapsed="true">
+    <Position X="14.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Player\PlayerSetting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ToolBar" Collapsed="true">
+    <Position X="18.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQAAAQAECAAAQAAAAQAEAAAAFAQACBBAABCAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Player\ToolBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DontDestroy" Collapsed="true">
+    <Position X="21.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Script\Tools\DontDestroy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Noise" Collapsed="true">
+    <Position X="18.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAgAAAAAAAIAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Tools\Noise.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RayHit" Collapsed="true">
+    <Position X="18.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAEAAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Script\Tools\RayHit.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Settings" Collapsed="true">
+    <Position X="9.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAQUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\Tools\Settings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TaskRunner" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>SQAAAAAAACAAAgAgAAAAQAAAAABAAAgAYAAAAAAQAAA=</HashCode>
+      <FileName>Assets\Script\Tools\TaskRunner.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="VectorTools" Collapsed="true">
+    <Position X="21.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Script\Tools\VectorTools.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="VoxelData" Collapsed="true">
+    <Position X="13" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACgCAAAARAAMAABAACCAAAAAAAAAIAAEAAAAAATBAA=</HashCode>
+      <FileName>Assets\Script\Tools\VoxelData.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BackPackUI" Collapsed="true">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAABBAAAAAAAAABA=</HashCode>
+      <FileName>Assets\Script\UIController\BackPackUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameEscMenu" Collapsed="true">
+    <Position X="18.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAAAAAQAACABCAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\UIController\GameEscMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainControl" Collapsed="true">
+    <Position X="9.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\UIController\MainControl.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MenuController" Collapsed="true">
+    <Position X="13" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>JgAAAAAACCAAAAAAAAAAAAAAAQIAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Assets\Script\UIController\MenuController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MultiplayUI" Collapsed="true">
+    <Position X="16.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\UIController\MultiplayUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OptionUI" Collapsed="true">
+    <Position X="21.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACCAQAAQEAIAIAAAIgAAAAAAgAAAAAAQAAAAAgACAI=</HashCode>
+      <FileName>Assets\Script\UIController\OptionUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SaveItemUI" Collapsed="true">
+    <Position X="23.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAEAAAABEEAABAAAAAAASAAAAAIAIAgAAEA=</HashCode>
+      <FileName>Assets\Script\UIController\SaveItemUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SavesUI" Collapsed="true">
+    <Position X="7.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAEAAAABAMAAAAAAAAAAAAAIAAAQAAAASBA=</HashCode>
+      <FileName>Assets\Script\UIController\SavesUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WorldSettingUI" Collapsed="true">
+    <Position X="7.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEASAQAAAAAABIAIAMAAAgAAAhAIAAAAgAAAAQQAAAA=</HashCode>
+      <FileName>Assets\Script\UIController\WorldSettingUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BlockType" Collapsed="true">
+    <Position X="11.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEACAAARAAAAAQAQAAAIYCAAAAAAAAgQAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\World\BlockType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Structure" Collapsed="true">
+    <Position X="18.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Script\World\Structure.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChatController" Collapsed="true">
+    <Position X="20" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAQAAAAAAAAAAAICEAAAAAACAA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DropdownSample" Collapsed="true">
+    <Position X="25.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAQAAAAAAIIAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnvMapAnimator" Collapsed="true">
+    <Position X="13" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAACAAAAAAAAAgAAAAAAQAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WarriorAnimsFREE.GUIControls" Collapsed="true">
+    <Position X="23.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAACAAAAAYEA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\Demo Elements\Code\GUIControls.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WarriorAnimsFREE.AnimatorParentMove" Collapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAQAA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\Warrior FREE\Code\AnimatorParentMove.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WarriorAnimsFREE.IKHands" Collapsed="true">
+    <Position X="25.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BQAAAACAAAAAAAAAAAgCAQAAAABAAAAAAQAEIgAQQUA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\Warrior FREE\Code\IKHands.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WarriorAnimsFREE.WarriorCharacterAnimatorEvents" Collapsed="true">
+    <Position X="16.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAQAAABAAAAAIgABgAAAAAAABAAgAoAAAAQAA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\Warrior FREE\Code\WarriorAnimatorEvents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WarriorAnimsFREE.WarriorController" Collapsed="true">
+    <Position X="0.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>hQcwAABpIgEgGEAE8EEAQVAASggACQCgggBBSQYCgGA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\Warrior FREE\Code\WarriorController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WarriorAnimsFREE.WarriorInputController" Collapsed="true">
+    <Position X="18.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAEAAAEgAEAAACAAAgAAAAAIEAAA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\Warrior FREE\Code\WarriorInputController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WarriorAnimsFREE.WarriorInputSystemController" Collapsed="true">
+    <Position X="20" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAEAAAAAACAAAgAAAAAIAAAA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\Warrior FREE\Code\WarriorInputSystemController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WarriorAnimsFREE.WarriorMovementController" Collapsed="true">
+    <Position X="5.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AFAUIIgAACAAIgAgQgIAIAAAAAABCAUACARAQAAAYhA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\Warrior FREE\Code\WarriorMovementController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WarriorAnimsFREE.WarriorTiming" Collapsed="true">
+    <Position X="21.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\Warrior FREE\Code\WarriorTiming.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Controller.CreatureMover" Collapsed="true">
+    <Position X="16.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAAQEoAAAAAQYAAIEaQCgAAAAAAQAAEAIkAAgQIEA=</HashCode>
+      <FileName>Assets\ithappy\Animals_FREE\Scripts\CreatureMover.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Controller.MovePlayerInput" Collapsed="true">
+    <Position X="14.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAAAAIAAAAAoJAIIABAggEAAAAAwAAIAAAIAAQEEA=</HashCode>
+      <FileName>Assets\ithappy\Animals_FREE\Scripts\MovePlayerInput.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Controller.PlayerCamera" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAACAIACgBAACAAACEASBAAAgAAQAAAAABQAAQAEA=</HashCode>
+      <FileName>Assets\ithappy\Animals_FREE\Scripts\PlayerCamera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Controller.ThirdPersonCamera" Collapsed="true">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAIAAAAAAAAAAoAAAAAAAIAAAAAAAAAAQBAA=</HashCode>
+      <FileName>Assets\ithappy\Animals_FREE\Scripts\ThirdPersonCamera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.Benchmark01" Collapsed="true">
+    <Position X="13" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YAAAAAIAACAAAAAAAAQAAAAIAAQAAAAAgAABAAAAAAA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.Benchmark01_UGUI" Collapsed="true">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YAAAAAAAACAAAAAAAAQAAAAKAAQAAAAAgAABAAAAAAA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.Benchmark02" Collapsed="true">
+    <Position X="16.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAEAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.Benchmark03" Collapsed="true">
+    <Position X="18.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACCAAAAAAAAAAAAAAAAAQAAAAAAAAAAAEEA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.Benchmark04" Collapsed="true">
+    <Position X="20" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAIACAAAAAAAAAAAAAAAAAAAAAAAQAAAAABAAA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.CameraController" Collapsed="true">
+    <Position X="16.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAEAAEADAEBEAgAIQAIEABAAAFgYQQACAAAAAAIEA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.ObjectSpin" Collapsed="true">
+    <Position X="20" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAAEAIAAAAAAAAAAAAQAAAEABAIAgAAAAAAQBAAEA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.ShaderPropAnimator" Collapsed="true">
+    <Position X="11.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAAACAAAAAAAAAgAEAAAAAAAAAAAAAAAQAgAEA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.SimpleScript" Collapsed="true">
+    <Position X="13" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAABAAAAAAAEAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.SkewTextExample" Collapsed="true">
+    <Position X="16.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAEAACAAAAAAAAAAAAAABAEAAAAAIAAAAAACAEA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.TeleType" Collapsed="true">
+    <Position X="9.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>YAAAAAAAACAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.TextConsoleSimulator" Collapsed="true">
+    <Position X="11.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAACAAAAAAAAAAAAAABAAAAAAIAMAAAAACCEA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.TextMeshProFloatingText" Collapsed="true">
+    <Position X="13" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABACICAJACAAAAAAAAAAAAAJAAQAQAAAAABAACAACEI=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.TextMeshSpawner" Collapsed="true">
+    <Position X="14.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAEAAAAAAABAAAAAAAAAAAAAAAACEA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.TMP_ExampleScript_01" Collapsed="true">
+    <Position X="20" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAgAIBAAAAAAAAAAACAAAAIAAAAAAAEA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.TMP_FrameRateCounter" Collapsed="true">
+    <Position X="21.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AoQAAAAAACAAAIgAAAAgAIAAAgQAAAAAAAAAAAAAAEg=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.TMP_TextEventCheck" Collapsed="true">
+    <Position X="25.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kAAAAAAAAAAAAAAAAAAAAAAEAAAAAAEJAAAAAAACCAA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.TMP_TextInfoDebugTool" Collapsed="true">
+    <Position X="9.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIEAAIYACACAAAggAAQAAAAoABKAAEAAACAgQACgAI=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.TMP_TextSelector_A" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAAAAIAAAAAQoAAAAAAAAAQAAAWA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TMPro.Examples.TMP_TextSelector_B" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAKAAABBGgAAAIAQAQAAIAAIgAQoAABIAEAAAQAACEA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="TMPro.Examples.TMP_UiFrameRateCounter" Collapsed="true">
+    <Position X="14.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AoQAAAAAACAAAAgAAAAgAIAAAgQAAAAAAAAAAAAAAEg=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.TMPro_InstructionOverlay" Collapsed="true">
+    <Position X="16.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAIAAAAAAIgAAAAgAAAAAAQAAAAACAAAAAAAAEA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.VertexColorCycler" Collapsed="true">
+    <Position X="23.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAgAAAAAAAACAEA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.VertexJitter" Collapsed="true">
+    <Position X="25.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAACAAAAAAAAAFAAAAAAAAAAgIAMAAAAACCEA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.VertexShakeA" Collapsed="true">
+    <Position X="7.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAACAAAFAACAAAAAAAgIAMAAAAACCEA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.VertexShakeB" Collapsed="true">
+    <Position X="9.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAACAAAAAAAAAFAAAAAAAAAAgIAMAAAAACCEA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.VertexZoom" Collapsed="true">
+    <Position X="11.25" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAACAAAAAAAAAFAAAAAAAAAAgIAMAAAAACCEA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.Examples.WarpTextExample" Collapsed="true">
+    <Position X="14.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAEAACAAAAAAAAAFAAAABAAAAAAAIAAAAAACAEA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.TMP_DigitValidator" Collapsed="true">
+    <Position X="18.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.TMP_PhoneNumberValidator" Collapsed="true">
+    <Position X="23.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TMPro.TMP_TextEventHandler" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAgAEEAAAAAMABAAEAIEAIAUApAAAAAAAAAYACBWE=</HashCode>
+      <FileName>Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Struct Name="PlayerInput" Collapsed="true">
+    <Position X="7.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAAAAgAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\SuperCharacterController\Code\PlayerInputController.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="SuperCollision" Collapsed="true">
+    <Position X="9.5" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAgAAAAAAAAAIkAAAAAAAAA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\SuperCharacterController.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="BlockEnum" Collapsed="true">
+    <Position X="9.5" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAQAQAAgAAAQAAoAAIAABAAAAAAAQBAUAAAAAIAAgA=</HashCode>
+      <FileName>Assets\Script\Entity\BlockEnum.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="WarriorAnimsFREE.Warrior" Collapsed="true">
+    <Position X="11.25" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgLAAAAAEQAAAAAAAIABAAAAAAAACAgAAAAAYAAAA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\Warrior FREE\Code\WarriorData.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="WarriorAnimsFREE.WarriorState" Collapsed="true">
+    <Position X="12.25" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAoAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\Warrior FREE\Code\WarriorData.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="WarriorAnimsFREE.AnimatorTrigger" Collapsed="true">
+    <Position X="7.75" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\ExplosiveLLC\Warrior FREE\Code\WarriorData.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Microsoft YaHei UI" Size="9" />
+</ClassDiagram>

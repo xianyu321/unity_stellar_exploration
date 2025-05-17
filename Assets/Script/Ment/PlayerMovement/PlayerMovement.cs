@@ -146,7 +146,7 @@ public class PlayerMovement
         if (angle >= 202.5 && angle < 247.5) return 5;
         if (angle >= 247.5 && angle < 292.5) return 6;
         if (angle >= 292.5 && angle < 337.5) return 7;
-        return 0; // 默认返回值，理论上不会到达这里
+        return 0;
     }
 
     protected virtual void ChunkVelocity()

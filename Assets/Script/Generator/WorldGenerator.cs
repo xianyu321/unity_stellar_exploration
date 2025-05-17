@@ -158,10 +158,6 @@ public class WorldGenerator
         {
             return new Biome();
         }
-        else if (biomeWidget < 0.65)
-        {
-            return new ForestBiome();
-        }
         else
         {
             return new ForestBiome();

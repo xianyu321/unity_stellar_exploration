@@ -161,7 +161,6 @@ public class ChunkEntity
             if (CheckVoxel(pos + VoxelData.faceChecks[p]))
             {
                 int texIndex = BlockManager.Instance.Blocks[blockID].faces.GetTextureID(p);
-                //  && world.blockTypes[neighbor.id].renderNeighborFaces
                 for (int i = 0; i < 4; ++i)
                 {
                     vertices.Add(pos + VoxelData.voxelVerts[VoxelData.voxelTris[p, i]]);

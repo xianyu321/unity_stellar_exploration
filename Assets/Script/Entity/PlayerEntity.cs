@@ -57,8 +57,8 @@ public class PlayerEntity : MonoBehaviour
     public List<ItemData> items = new List<ItemData>();
     void Awake()
     {
-        for(int i = 0; i < 36; ++i){
-            items.Add(new(0,i + 300));
+        for(int i = 0; i < 1; ++i){
+            items.Add(new(6, 2));
         }
     }
     private void Start()

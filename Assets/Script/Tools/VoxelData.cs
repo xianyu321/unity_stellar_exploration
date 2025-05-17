@@ -50,7 +50,7 @@ public static class VoxelData
         new Vector3(-0.5f, 0.5f, 0.5f),
     };
 
-    //可视面
+    //体素六面方向上的节点
     public static readonly Vector3[] faceChecks = new Vector3[6] {
         new Vector3(0.0f, 0.0f, -1.0f), //后
         new Vector3(0.0f, 0.0f, 1.0f), //前
@@ -60,7 +60,7 @@ public static class VoxelData
         new Vector3(1.0f, 0.0f, 0.0f), //右
     };
 
-    //体素的六个面
+    //体素的六个面的顶点索引
     public static readonly int[,] voxelTris = new int[6, 4] {
         //正方形上三角形贴图，两个三角形顶点排序方式为 0 1 2 2 1 3
 		{0, 3, 1, 2}, // Back Face
@@ -69,7 +69,6 @@ public static class VoxelData
 		{1, 5, 0, 4}, // Bottom Face
 		{4, 7, 0, 3}, // Left Face
 		{1, 2, 5, 6} // Right Face
-
 	};
     //正方形像素点的四个点
     public static readonly Vector2[] voxelUvs = new Vector2[4] {
